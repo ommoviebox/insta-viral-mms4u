@@ -98,7 +98,11 @@ return text.includes(q);
 });
 
 $("emptyState").hidden = shown.length > 0;
-
+if (shown.length === 0) {
+  $("emptyState").textContent = "No titles found.";
+} else {
+  $("emptyState").textContent = "";
+}
 shown.forEach((t, i) => {
 const a = document.createElement("a");
 a.className = "card";
