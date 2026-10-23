@@ -171,3 +171,20 @@ font-weight: 700 !important;
 line-height: 1.4 !important;
 overflow-wrap: anywhere !important;
 }
+/* Movie title font like reference image */
+.grid .card .info h3 {
+display: -webkit-box !important;
+-webkit-box-orient: vertical !important;
+-webkit-line-clamp: 4 !important;
+overflow: hidden !important;
+text-overflow: ellipsis !important;
+
+text-align: center !important;
+font-family: Arial, Helvetica, sans-serif !important;
+font-size: 15px !important;
+font-weight: 400 !important;
+line-height: 1.5 !important;
+
+overflow-wrap: anywhere !important;
+margin: 0 0 7px !important;
+}
