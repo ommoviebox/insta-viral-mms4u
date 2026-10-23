@@ -1,26 +1,32 @@
 <!doctype html>
+
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#000">
-<title>Insta Viral MMS4u</title>
-<meta name="description" content="Entertainment categories and authorized viewing links.">
-<link rel="stylesheet" href="style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#000">
+  <title>Insta Viral MMS4u</title>
+  <meta name="description" content="Entertainment categories and authorized viewing links.">
+  <link rel="stylesheet" href="style.css">
 </head>
-<body>
-
-<header>
+<body><header>
   <a class="brand" href="index.html">INSTA VIRAL <span>MMS4U</span></a>
-</header>
-
-<div class="actions">
+</header><!-- Search bar below website name --><form id="searchForm">
+  <input
+    id="searchInput"
+    type="search"
+    placeholder="Search Movies..."
+    aria-label="Search titles"
+  >
+  <button type="submit">SEARCH</button>
+</form><!-- Menu and Telegram buttons --><div class="actions">
   <button id="menuToggle" type="button">☰ MENU</button>
-  <a class="telegram" href="https://t.me/" target="_blank" rel="noopener">✈ TELEGRAM</a>
-</div>
-
-<nav id="siteNav" hidden>
+  <a class="telegram" href="https://t.me/" target="_blank" rel="noopener">
+    ✈ JOIN TELEGRAM
+  </a>
+</div><!-- Category buttons --><nav id="siteNav">
   <div class="category-buttons">
+    <a class="category-btn" href="#all">All</a>
     <a class="category-btn" href="#instagram-viral-video">Instagram Viral Video</a>
     <a class="category-btn" href="#brother-sister-video">Brother Sister Video</a>
     <a class="category-btn" href="#bhabhi-lovers">Bhabhi Lovers</a>
@@ -33,22 +39,9 @@
     <a class="category-btn" href="#korean-video">Korean Video</a>
     <a class="category-btn" href="#all-viral-video">All Viral Video</a>
   </div>
-</nav>
-
-<form id="searchForm">
-  <input id="searchInput" placeholder="Search movies and web series..." aria-label="Search titles">
-  <button type="submit">SEARCH</button>
-</form>
-
-<h2 class="heading">
-  🔥 Latest Movies &amp; Web Series
-</h2>
-
-<main id="movieGrid" class="grid"></main>
-<p id="emptyState">Website files are ready. Add your authorized titles to begin.</p>
-
-<footer>Insta Viral MMS4u · Entertainment information and authorized links</footer>
-
-<script type="module" src="app.js"></script>
-</body>
+</nav><h2 class="heading">🔥 Latest Movies &amp; Web Series</h2><main id="movieGrid" class="grid"></main><p id="emptyState" hidden>
+  No titles found.
+</p><footer>
+  Insta Viral MMS4u · Entertainment information and authorized links
+</footer><script type="module" src="app.js"></script></body>
 </html>
