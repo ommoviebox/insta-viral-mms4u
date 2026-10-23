@@ -372,3 +372,11 @@ border-color: #ed008c !important;
   background: #c90070 !important;
   color: #ffffff !important;
 }
+/* Latest Release - Stylish Font */
+.latest-release {
+  font-family: "Trebuchet MS", Arial, sans-serif;
+  font-size: 21px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  color: #ffffff;
+}
