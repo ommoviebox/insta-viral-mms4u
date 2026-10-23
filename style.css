@@ -115,3 +115,39 @@ line-height: 1.4 !important;
 .meta[hidden] {
 display: none !important;
 }
+/* FIX: Always show movie card frame */
+.grid .card {
+display: block !important;
+box-sizing: border-box !important;
+padding: 3px !important;
+border: 3px solid #ed008c !important;
+border-radius: 0 !important;
+background: #ed008c !important;
+overflow: hidden !important;
+text-decoration: none !important;
+color: #fff !important;
+}
+
+.grid .card .inner {
+display: block !important;
+width: 100% !important;
+height: 100% !important;
+border-radius: 0 !important;
+overflow: hidden !important;
+background: #090909 !important;
+}
+
+.grid .card .info {
+text-align: center !important;
+}
+
+.grid .card .info h3 {
+text-align: center !important;
+font-family: Arial, Helvetica, sans-serif !important;
+font-size: 15px !important;
+font-weight: 700 !important;
+}
+
+.grid .card .meta[hidden] {
+display: none !important;
+}
