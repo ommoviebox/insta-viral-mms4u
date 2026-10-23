@@ -366,3 +366,9 @@ background: #ed008c !important;
 color: #fff !important;
 border-color: #ed008c !important;
 }
+/* MENU aur SEARCH button - Dark Pink */
+#menuToggle,
+#searchForm button {
+  background: #c90070 !important;
+  color: #ffffff !important;
+}
