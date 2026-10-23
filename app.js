@@ -22,7 +22,7 @@ year: "2026",
 language: "Hindi",
 type: "Movie",
 poster: "",
-description: "Replace this example with your own authorized title."
+description: "Demo movie card for website design."
 },
 {
 title: "Example Web Series",
@@ -30,7 +30,7 @@ year: "2026",
 language: "English",
 type: "Web Series",
 poster: "",
-description: "Replace this example with your own authorized title."
+description: "Demo web series card for website design."
 }
 ];
 
