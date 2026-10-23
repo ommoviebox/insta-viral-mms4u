@@ -74,7 +74,9 @@ wrap.appendChild(b);
 nav.appendChild(wrap);
 
 $("menuToggle").onclick = () => {
-nav.hidden = !nav.hidden;
+  if (window.innerWidth <= 649) {
+    nav.classList.toggle("menu-open");
+  }
 };
 }
 
