@@ -1,0 +1,12 @@
+const $=id=>document.getElementById(id);
+const categories=["All","Action","Animation","Bollywood","Comedy","Crime","Drama","English Movies","Hindi Dubbed","Hollywood","Horror","Romance","Tamil","Telugu","Thriller","TV Shows","Web Series"];
+const sampleTitles=[
+ {title:"Example Movie One",year:"2026",language:"Hindi",type:"Movie",poster:"",description:"Replace this example with your own authorized title."},
+ {title:"Example Web Series",year:"2026",language:"English",type:"Web Series",poster:"",description:"Replace this example with your own authorized title."}
+];
+let titles=sampleTitles,category="All";
+const nav=$("siteNav"),grid=$("movieGrid"),search=$("searchInput");
+function norm(v){return String(v||"").toLowerCase()}
+function setupMenu(){categories.forEach(c=>{const b=document.createElement("button");b.textContent=c;b.className=c==="All"?"active":"";b.onclick=()=>{category=c;nav.querySelectorAll("button").forEach(x=>x.classList.toggle("active",x.textContent===c));render()};nav.append(b)});$("menuToggle").onclick=()=>{nav.hidden=!nav.hidden};}
+function render(){grid.replaceChildren();const q=norm(search.value);const shown=titles.filter(t=>(category==="All"||norm([t.type,t.genre,t.language].join(" ")).includes(norm(category).replace("web series","series").replace("tv shows","tv")))&&(norm([t.title,t.year,t.language,t.type,t.description].join(" ")).includes(q)));$("resultCount").textContent=shown.length+" titles";$("emptyState").hidden=shown.length>0;shown.forEach((t,i)=>{const a=document.createElement("a");a.className="card";a.href="movie.html?id="+i;const inner=document.createElement("div");inner.className="inner";const img=t.poster?document.createElement("img"):document.createElement("div");img.className=t.poster?"poster":"placeholder";if(t.poster){img.src=t.poster;img.alt=t.title;img.loading="lazy"}else img.textContent="IV";const info=document.createElement("div");info.className="info";const h=document.createElement("h3");h.textContent=t.title;const meta=document.createElement("div");meta.className="meta";meta.textContent=[t.year,t.language,t.type].filter(Boolean).join(" • ");info.append(h,meta);inner.append(img,info);a.append(inner);grid.append(a)})}
+$("searchForm").onsubmit=e=>{e.preventDefault();render()};search.addEventListener("input",render);setupMenu();render();
