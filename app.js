@@ -130,11 +130,7 @@ h.textContent = t.title;
 
 const meta = document.createElement("div");
 meta.className = "meta";
-meta.textContent = [
-  t.year,
-  t.language,
-  t.type
-].filter(Boolean).join(" • ");
+meta.hidden = true;
 
 info.append(h, meta);
 inner.append(img, info);
