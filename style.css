@@ -387,3 +387,19 @@ border-color: #ed008c !important;
   color: #ffffff !important;
   border: none !important;
 }
+/* Desktop & Tablet: Categories always visible */
+#siteNav {
+  display: block !important;
+}
+
+/* Phone: Categories open only after MENU click */
+@media (max-width: 649px) {
+  #siteNav {
+    display: none !important;
+    padding-top: 8px;
+  }
+
+  #siteNav.menu-open {
+    display: block !important;
+  }
+}
