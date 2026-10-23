@@ -380,29 +380,6 @@ border-color: #ed008c !important;
   letter-spacing: 0.5px;
   color: #ffffff;
 }
-/* Movie cards - Pink Frame Fix */
-.grid .card {
-  display: block !important;
-  border: 2px solid #ed008c !important;
-  background: #ed008c !important;
-  padding: 2px !important;
-  overflow: hidden !important;
-  border-radius: 0 !important;
-}
-
-.grid .card .inner {
-  display: block !important;
-  width: 100% !important;
-  background: #090909 !important;
-  overflow: hidden !important;
-}
-
-.poster,
-.placeholder {
-  display: block !important;
-  width: 100% !important;
-  aspect-ratio: 2 / 3 !important;
-}
 /* Bright Pink MENU and SEARCH Buttons */
 #menuToggle,
 #searchForm button {
