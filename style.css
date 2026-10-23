@@ -55,3 +55,28 @@ font-size: 14px;
 border-radius: 9px;
 }
 }
+/* Smaller Category Buttons */
+.category-buttons {
+gap: 6px;
+}
+
+.category-btn {
+padding: 6px 9px;
+min-height: auto;
+font-size: 12px;
+font-weight: 700;
+line-height: 1.2;
+border-radius: 7px;
+}
+
+@media (max-width: 480px) {
+.category-buttons {
+gap: 6px;
+}
+
+.category-btn {
+padding: 6px 8px;
+font-size: 12px;
+border-radius: 7px;
+}
+}
