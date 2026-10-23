@@ -403,3 +403,10 @@ border-color: #ed008c !important;
   width: 100% !important;
   aspect-ratio: 2 / 3 !important;
 }
+/* Bright Pink MENU and SEARCH Buttons */
+#menuToggle,
+#searchForm button {
+  background: #ff008c !important;
+  color: #ffffff !important;
+  border: none !important;
+}
