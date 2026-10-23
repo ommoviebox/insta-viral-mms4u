@@ -351,3 +351,18 @@ margin-right: auto !important;
 .actions .telegram {
 margin-left: auto !important;
 }
+/* Restore original category button colors */
+.category-btn {
+background: #ed008c !important;
+color: #fff !important;
+border-color: #ed008c !important;
+}
+
+.category-btn:first-child,
+.category-btn.active,
+.category-btn:hover,
+.category-btn:focus-visible {
+background: #ed008c !important;
+color: #fff !important;
+border-color: #ed008c !important;
+}
