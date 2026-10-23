@@ -97,7 +97,6 @@ return text.includes(q);
 
 });
 
-$("resultCount").textContent = shown.length + " titles";
 $("emptyState").hidden = shown.length > 0;
 
 shown.forEach((t, i) => {
