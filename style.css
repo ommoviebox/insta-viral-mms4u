@@ -80,16 +80,27 @@ font-size: 12px;
 border-radius: 7px;
 }
 }
-/* Movie cards: square frame + centered titles */
+/* Movie Frame - Square Corners + Pink Border */
 .card {
+display: block;
+min-width: 0;
+padding: 3px !important;
+border: 3px solid #ed008c !important;
 border-radius: 0 !important;
+background: #ed008c !important;
+color: #fff;
+text-decoration: none;
 }
 
 .inner {
+height: 100%;
+overflow: hidden;
 border-radius: 0 !important;
+background: #090909 !important;
 }
 
 .info {
+padding: 9px;
 text-align: center !important;
 }
 
@@ -99,11 +110,8 @@ font-family: Arial, Helvetica, sans-serif !important;
 font-size: 15px !important;
 font-weight: 700 !important;
 line-height: 1.4 !important;
-margin: 0 0 7px !important;
 }
 
-.meta {
-text-align: center !important;
-font-family: Arial, Helvetica, sans-serif !important;
-font-size: 12px !important;
+.meta[hidden] {
+display: none !important;
 }
