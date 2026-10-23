@@ -1,6 +1,7 @@
 const $ = id => document.getElementById(id);
 
 const categories = [
+"All",
 "Instagram Viral Video",
 "Brother Sister Video",
 "Bhabhi Lovers",
