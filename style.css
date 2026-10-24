@@ -446,3 +446,29 @@ video.video-logo {
   object-fit: contain !important;
   background: #000 !important;
 }
+/* Remove line below video logo */
+header {
+  border-bottom: none !important;
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+/* Move search bar up and make it thinner */
+#searchForm {
+  margin-top: 8px !important;
+  margin-bottom: 16px !important;
+  min-height: 46px !important;
+  height: 46px !important;
+}
+
+/* Keep search text centered */
+#searchForm input {
+  padding-top: 8px !important;
+  padding-bottom: 8px !important;
+}
+
+/* Make SEARCH button thinner */
+#searchForm button {
+  padding-top: 8px !important;
+  padding-bottom: 8px !important;
+}
