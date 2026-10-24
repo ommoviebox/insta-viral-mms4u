@@ -119,13 +119,8 @@
       color: #000;
     }
 
-    .download-button {
-      background: #19b86b;
-    }
-
-    .watch-button {
-      background: #ff9800;
-    }
+    .download-button { background: #19b86b; }
+    .watch-button { background: #ff9800; }
 
     .back-button {
       display: inline-flex;
@@ -145,9 +140,7 @@
     }
 
     @media (max-width: 480px) {
-      .detail-page {
-        padding: 10px;
-      }
+      .detail-page { padding: 10px; }
 
       .detail-hero {
         grid-template-columns: minmax(100px, 34%) minmax(0, 1fr);
@@ -157,9 +150,7 @@
         margin-bottom: 22px;
       }
 
-      .detail-poster {
-        border-radius: 18px;
-      }
+      .detail-poster { border-radius: 18px; }
 
       .info-card {
         padding: 17px 16px;
@@ -176,7 +167,6 @@
 </head>
 
 <body>
-
 <header>
   <a class="brand" href="index.html" aria-label="Home">
     <video class="video-logo" autoplay muted loop playsinline preload="auto">
@@ -200,28 +190,8 @@
   Insta Viral MMS4u · Entertainment information and authorized links
 </footer>
 
-<script>
-  // Keep video entries in the same order as app.js.
-  const videos = [
-    {
-      title: "Example Video One",
-      category: "Instagram Viral Video",
-      genre: "Viral Video",
-      poster: "",
-      screenshots: [],
-      downloadLink: "",
-      watchLink: ""
-    },
-    {
-      title: "Example Video Two",
-      category: "English Video",
-      genre: "Viral Video",
-      poster: "",
-      screenshots: [],
-      downloadLink: "",
-      watchLink: ""
-    }
-  ];
+<script type="module">
+  import { videos } from "./videos.js";
 
   const params = new URLSearchParams(location.search);
   const rawId = params.get("id");
@@ -251,33 +221,16 @@
   }
 
   if (!video) {
-    const heading = addText(
-      "h2",
-      "section-title",
-      "Video not found"
-    );
-
-    const message = addText(
-      "p",
-      "notice",
-      "Please return to the home page."
-    );
-
-    const back = addText(
-      "a",
-      "back-button",
-      "← Back to Home"
-    );
-
+    const heading = addText("h2", "section-title", "Video not found");
+    const message = addText("p", "notice", "Please return to the home page.");
+    const back = addText("a", "back-button", "← Back to Home");
     back.href = "index.html";
     root.replaceChildren(heading, message, back);
-
   } else {
-    document.title =
-      (video.title || "Video Details") +
+    document.title = (video.title || "Video Details") +
       " - Insta Viral MMS4u";
 
-    // TOP BOX: ONLY POSTER + TITLE
+    // Top box: poster and title only
     const hero = document.createElement("section");
     hero.className = "detail-hero";
 
@@ -289,79 +242,53 @@
       poster.src = video.poster;
       poster.alt = video.title || "Video poster";
     } else {
-      poster = addText(
-        "div",
-        "detail-poster poster-placeholder",
-        "IV"
-      );
+      poster = addText("div", "detail-poster poster-placeholder", "IV");
     }
 
-    const title = addText(
-      "h1",
-      "detail-title",
-      video.title || "Untitled Video"
-    );
-
+    const title = addText("h1", "detail-title", video.title || "Untitled Video");
     hero.append(poster, title);
 
-    // ONLY NAME + GENRE BOXES
+    // Name and Genre boxes only
     const infoStack = document.createElement("section");
     infoStack.className = "info-stack";
 
     const nameCard = document.createElement("div");
     nameCard.className = "info-card";
-
-    const nameLabel = addText("strong", "", "NAME: ");
     nameCard.append(
-      nameLabel,
+      addText("strong", "", "NAME: "),
       document.createTextNode(video.title || "—")
     );
 
     const genreCard = document.createElement("div");
     genreCard.className = "info-card";
-
-    const genreLabel = addText("strong", "", "GENRE: ");
     genreCard.append(
-      genreLabel,
+      addText("strong", "", "GENRE: "),
       document.createTextNode(video.genre || video.category || "—")
     );
 
     infoStack.append(nameCard, genreCard);
 
-    // SCREENSHOTS
-    const screenshotTitle = addText(
-      "h2",
-      "section-title",
-      "▱ Screenshots ▱"
-    );
-
+    // Screenshots
+    const screenshotTitle = addText("h2", "section-title", "▱ Screenshots ▱");
     const screenshots = document.createElement("div");
     screenshots.className = "screenshots";
 
-    (Array.isArray(video.screenshots)
-      ? video.screenshots
-      : []
-    ).filter(Boolean).forEach(src => {
-      const image = document.createElement("img");
-      image.src = src;
-      image.alt = "Video screenshot";
-      image.loading = "lazy";
-      screenshots.appendChild(image);
-    });
+    (Array.isArray(video.screenshots) ? video.screenshots : [])
+      .filter(Boolean)
+      .forEach(src => {
+        const image = document.createElement("img");
+        image.src = src;
+        image.alt = "Video screenshot";
+        image.loading = "lazy";
+        screenshots.appendChild(image);
+      });
 
     if (!screenshots.children.length) {
-      screenshots.appendChild(
-        addText("p", "notice", "No screenshots added yet.")
-      );
+      screenshots.appendChild(addText("p", "notice", "No screenshots added yet."));
     }
 
-    // DOWNLOAD / WATCH LINKS
-    const linksTitle = addText(
-      "h2",
-      "section-title",
-      "Download Links 👇"
-    );
-
+    // Download and online watch links
+    const linksTitle = addText("h2", "section-title", "Download Links 👇");
     const buttons = document.createElement("div");
     buttons.className = "detail-buttons";
 
@@ -369,12 +296,7 @@
     const watch = validLink(video.watchLink);
 
     if (download) {
-      const link = addText(
-        "a",
-        "detail-button download-button",
-        "⬇ DOWNLOAD"
-      );
-
+      const link = addText("a", "detail-button download-button", "⬇ DOWNLOAD");
       link.href = download;
       link.target = "_blank";
       link.rel = "noopener noreferrer";
@@ -382,12 +304,7 @@
     }
 
     if (watch) {
-      const link = addText(
-        "a",
-        "detail-button watch-button",
-        "▶ ONLINE WATCH"
-      );
-
+      const link = addText("a", "detail-button watch-button", "▶ ONLINE WATCH");
       link.href = watch;
       link.target = "_blank";
       link.rel = "noopener noreferrer";
@@ -395,16 +312,10 @@
     }
 
     if (!download && !watch) {
-      buttons.appendChild(
-        addText("p", "notice", "Links will be added here.")
-      );
+      buttons.appendChild(addText("p", "notice", "Links will be added here."));
     }
 
-    const back = addText(
-      "a",
-      "back-button",
-      "← Back to Home"
-    );
+    const back = addText("a", "back-button", "← Back to Home");
     back.href = "index.html";
 
     root.replaceChildren(
@@ -418,6 +329,5 @@
     );
   }
 </script>
-
 </body>
 </html>
