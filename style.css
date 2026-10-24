@@ -403,3 +403,19 @@ border-color: #ed008c !important;
     display: block !important;
   }
 }
+/* Video logo - keep existing website design */
+.brand:has(.video-logo) {
+  display: inline-block;
+  width: 100%;
+  max-width: 600px;
+  line-height: 0;
+}
+
+.video-logo {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 150px;
+  object-fit: contain;
+  background: #000;
+}
