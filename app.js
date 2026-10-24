@@ -234,7 +234,7 @@ function render() {
     a.className = "card";
 
     const originalIndex = titles.indexOf(t);
-    a.href = "movie.html?id=" + originalIndex;
+    a.href = "video.html?id=" + originalIndex;
 
     const inner = document.createElement("div");
     inner.className = "inner";
