@@ -60,15 +60,17 @@ button.danger{background:#b3261e}
 <label>Category *</label>
 <select id="category" required>
 <option value="">Select Category</option>
-<option>Latest Release</option>
 <option>Instagram Viral Video</option>
-<option>Hindi Video</option>
+<option>Brother Sister Video</option>
+<option>Bhabhi Lovers</option>
+<option>Leaked Video</option>
 <option>English Video</option>
-<option>Tamil Video</option>
-<option>Telugu Video</option>
-<option>Malayalam Video</option>
-<option>Web Series</option>
-<option>Short Film</option>
+<option>Indian 4K Video</option>
+<option>Desi Video</option>
+<option>Hindi HD Video</option>
+<option>Pakistani Viral</option>
+<option>Korean Video</option>
+<option>All Viral Video</option>
 <option value="__custom">+ Add Custom Category</option>
 </select>
 
@@ -76,6 +78,12 @@ button.danger{background:#b3261e}
 <label>Custom Category Name</label>
 <input id="customCategory" placeholder="Enter category name">
 </div>
+
+<label>Latest Release?</label>
+<select id="latestRelease">
+<option value="false">No</option>
+<option value="true">Yes</option>
+</select>
 
 <label>Type</label>
 <select id="type">
@@ -135,6 +143,7 @@ const msg=t=>$("status").textContent=t;
 function addButtonRow(label="",url=""){
 const row=document.createElement("div");
 row.className="button-row";
+
 const nl=document.createElement("label");
 nl.textContent="Button Name";
 const n=document.createElement("input");
@@ -142,6 +151,7 @@ n.className="btn-name";
 n.placeholder="Online Watch / Download 720p";
 n.value=label;
 n.required=true;
+
 const ul=document.createElement("label");
 ul.textContent="Button URL";
 const l=document.createElement("input");
@@ -150,11 +160,13 @@ l.className="btn-url";
 l.placeholder="https://...";
 l.value=url;
 l.required=true;
+
 const r=document.createElement("button");
 r.type="button";
 r.className="danger";
 r.textContent="Remove Button";
 r.onclick=()=>row.remove();
+
 row.append(nl,n,ul,l,r);
 $("buttonsContainer").append(row);
 }
@@ -181,12 +193,10 @@ url:r.querySelector(".btn-url").value.trim()
 $("addButton").onclick=()=>addButtonRow();
 
 $("category").onchange=()=>{
-$("customCategoryWrap").classList.toggle(
-"hidden",$("category").value!=="__custom"
-);
-if($("category").value!=="__custom"){
-$("customCategory").value="";
-}
+const custom=$("category").value==="__custom";
+$("customCategoryWrap").classList.toggle("hidden",!custom);
+$("customCategory").required=custom;
+if(!custom)$("customCategory").value="";
 };
 
 $("loginForm").onsubmit=async e=>{
@@ -235,9 +245,11 @@ $("formHeading").textContent="Add Video";
 $("saveBtn").textContent="Save Video";
 $("cancelEdit").classList.add("hidden");
 $("customCategoryWrap").classList.add("hidden");
+$("customCategory").required=false;
 $("customCategory").value="";
 setButtons([]);
 }
+
 $("cancelEdit").onclick=clearForm;
 
 $("videoForm").onsubmit=async e=>{
@@ -251,18 +263,15 @@ let category=$("category").value;
 if(category==="__custom"){
 category=$("customCategory").value.trim();
 }
-if(!category){
-msg("Select or enter a category");
-return;
-}
-if(category==="__custom"){
-msg("Enter a valid category name");
+if(!category||category==="__custom"){
+msg("Select or enter a valid category");
 return;
 }
 
 const data={
 title:$("title").value.trim(),
 category,
+latestRelease:$("latestRelease").value==="true",
 type:$("type").value,
 genre:$("genre").value.trim(),
 poster:$("poster").value.trim(),
@@ -313,21 +322,30 @@ if(!videosCache.length){
 list.textContent="No videos found in Firestore videos collection.";
 return;
 }
+
 for(const v of videosCache){
 const box=document.createElement("div");
 box.className="video-item";
+
 const title=document.createElement("strong");
 title.textContent=v.title||"Untitled";
+
 const info=document.createElement("p");
 info.className="muted";
-info.textContent=(v.category||"No category")+" • "+(v.published?"Published":"Unpublished");
+info.textContent=
+(v.category||"No category")+
+" • Latest Release: "+(v.latestRelease===true?"Yes":"No")+
+" • "+(v.published?"Published":"Unpublished");
+
 const acts=document.createElement("div");
 acts.className="actions";
+
 const edit=document.createElement("button");
 edit.type="button";
 edit.className="secondary";
 edit.textContent="Edit";
 edit.onclick=()=>fill(v);
+
 const del=document.createElement("button");
 del.type="button";
 del.className="danger";
@@ -342,6 +360,7 @@ await loadVideos();
 msg("Delete error: "+err.code);
 }
 };
+
 acts.append(edit,del);
 box.append(title,info,acts);
 list.append(box);
@@ -350,6 +369,7 @@ list.append(box);
 
 function fill(v){
 $("docId").value=v.id;
+
 for(const f of ["title","type","genre","poster"]){
 $(f).value=v[f]||"";
 }
@@ -358,18 +378,24 @@ const opts=[...$("category").options].map(o=>o.value);
 if(opts.includes(v.category)&&v.category!=="__custom"){
 $("category").value=v.category;
 $("customCategoryWrap").classList.add("hidden");
+$("customCategory").required=false;
 $("customCategory").value="";
 }else{
 $("category").value="__custom";
 $("customCategoryWrap").classList.remove("hidden");
+$("customCategory").required=true;
 $("customCategory").value=v.category||"";
 }
+
+$("latestRelease").value=v.latestRelease===true?"true":"false";
 $("screenshots").value=Array.isArray(v.screenshots)?v.screenshots.join("\n"):"";
 $("published").value=v.published===false?"false":"true";
+
 setButtons(v.buttons||[
 ...(v.watchLink?[{label:"Online Watch",url:v.watchLink}]:[]),
 ...(v.downloadLink?[{label:"Download",url:v.downloadLink}]:[])
 ]);
+
 $("formHeading").textContent="Edit Video";
 $("saveBtn").textContent="Update Video";
 $("cancelEdit").classList.remove("hidden");
