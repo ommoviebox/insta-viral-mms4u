@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#000">
+  <meta name="description" content="Video details, screenshots and authorized viewing links.">
+  <title>Video Details - Insta Viral MMS4u</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .detail-page{max-width:900px;margin:0 auto;padding:12px}
+    .detail-top{display:grid;grid-template-columns:125px minmax(0,1fr);gap:14px;align-items:start;margin:12px 0 18px}
+    .detail-poster{display:block;width:100%;aspect-ratio:2/3;object-fit:cover;background:#151515;border:2px solid #ed008c}
+    .poster-placeholder{display:grid;place-items:center;color:#777;font-weight:900;font-size:24px}
+    .detail-title{margin:4px 0 12px;font-size:21px;line-height:1.3;overflow-wrap:anywhere}
+    .detail-info{display:grid;gap:9px}
+    .info-row{background:#171717;border:1px solid #333;padding:12px;overflow-wrap:anywhere;line-height:1.5}
+    .info-row strong{color:#ff008c}
+    .section-title{margin:22px 0 12px;padding:12px;background:#222;border-left:4px solid #ed008c;font-size:19px}
+    .screenshots{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+    .screenshots img{display:block;width:100%;border:1px solid #ed008c;background:#151515}
+    .detail-buttons{display:grid;gap:12px;margin:16px 0 26px}
+    .detail-button{display:block;text-align:center;text-decoration:none;font-weight:800;padding:15px 12px;border-radius:8px;color:#000}
+    .download-button{background:#19b86b}
+    .watch-button{background:#ff9800}
+    .back-button{display:inline-flex;justify-content:center;align-items:center;background:#ff008c;color:#fff;text-decoration:none;padding:10px 16px;border-radius:25px;font-weight:700}
+    .notice{color:#aaa;line-height:1.6}
+    @media(max-width:380px){.detail-top{grid-template-columns:105px minmax(0,1fr)}.detail-title{font-size:18px}}
+  </style>
+</head>
+<body>
+<header>
+  <a class="brand" href="index.html" aria-label="Insta Viral MMS4u Home">
+    <video class="video-logo" autoplay muted loop playsinline preload="auto">
+      <source src="./Logo.mp4" type="video/mp4">
+    </video>
+  </a>
+</header>
+
+<div class="actions">
+  <a class="back-button" href="index.html">← HOME</a>
+  <a class="telegram" href="https://t.me/" target="_blank" rel="noopener noreferrer">✈ JOIN TELEGRAM</a>
+</div>
+
+<main class="detail-page" id="details">
+  <p class="notice">Loading video details...</p>
+</main>
+
+<footer>Insta Viral MMS4u · Entertainment information and authorized links</footer>
+
+<script type="module">
+  /*
+    Keep this list in the same order as the titles array in app.js.
+    Replace example entries with your own authorized content and links.
+  */
+  const videos = [
+    {
+      title: "Example Video One",
+      year: "2026",
+      language: "Hindi",
+      type: "Video",
+      category: "Instagram Viral Video",
+      genre: "Viral Video",
+      poster: "",
+      description: "Video description goes here.",
+      screenshots: [],
+      downloadLink: "",
+      watchLink: ""
+    },
+    {
+      title: "Example Video Two",
+      year: "2026",
+      language: "English",
+      type: "Video",
+      category: "English Video",
+      genre: "Viral Video",
+      poster: "",
+      description: "Video description goes here.",
+      screenshots: [],
+      downloadLink: "",
+      watchLink: ""
+    }
+  ];
+
+  const params = new URLSearchParams(window.location.search);
+  const rawId = params.get("id");
+  const id = rawId !== null && /^\d+$/.test(rawId) ? Number(rawId) : -1;
+  const video = videos[id];
+  const root = document.getElementById("details");
+
+  function safeLink(value) {
+    try {
+      const url = new URL(value, window.location.href);
+      return ["http:", "https:"].includes(url.protocol) ? url.href : "";
+    } catch {
+      return "";
+    }
+  }
+
+  function makeText(tag, className, text) {
+    const node = document.createElement(tag);
+    if (className) node.className = className;
+    node.textContent = text || "";
+    return node;
+  }
+
+  if (!video) {
+    root.replaceChildren(
+      makeText("h2", "section-title", "Video not found"),
+      makeText("p", "notice", "This video ID was not found. Please return to the home page."),
+      Object.assign(document.createElement("a"), {
+        className: "back-button",
+        href: "index.html",
+        textContent: "← Back to Home"
+      })
+    );
+  } else {
+    document.title = `${video.title || "Video Details"} - Insta Viral MMS4u`;
+
+    const top = document.createElement("section");
+    top.className = "detail-top";
+
+    let poster;
+    if (video.poster) {
+      poster = document.createElement("img");
+      poster.className = "detail-poster";
+      poster.src = video.poster;
+      poster.alt = video.title || "Video poster";
+    } else {
+      poster = makeText("div", "detail-poster poster-placeholder", "IV");
+    }
+
+    const right = document.createElement("div");
+    right.appendChild(makeText("h1", "detail-title", video.title || "Untitled Video"));
+
+    const info = document.createElement("div");
+    info.className = "detail-info";
+    [
+      ["Category", video.category],
+      ["Genre", video.genre],
+      ["Release Year", video.year],
+      ["Language", video.language],
+      ["Type", video.type]
+    ].forEach(([label, value]) => {
+      const row = document.createElement("div");
+      row.className = "info-row";
+      const strong = document.createElement("strong");
+      strong.textContent = label + ": ";
+      row.append(strong, document.createTextNode(value || "—"));
+      info.appendChild(row);
+    });
+
+    right.appendChild(info);
+    top.append(poster, right);
+
+    const descriptionTitle = makeText("h2", "section-title", "Description");
+    const description = makeText("div", "info-row", video.description || "No description added.");
+
+    const screenshotTitle = makeText("h2", "section-title", "Screenshots");
+    const screenshots = document.createElement("div");
+    screenshots.className = "screenshots";
+
+    (Array.isArray(video.screenshots) ? video.screenshots : []).filter(Boolean).forEach(src => {
+      const image = document.createElement("img");
+      image.src = src;
+      image.alt = "Video screenshot";
+      image.loading = "lazy";
+      screenshots.appendChild(image);
+    });
+
+    if (!screenshots.children.length) {
+      screenshots.appendChild(makeText("p", "notice", "No screenshots added yet."));
+    }
+
+    const linksTitle = makeText("h2", "section-title", "Links 👇");
+    const buttons = document.createElement("div");
+    buttons.className = "detail-buttons";
+
+    const download = safeLink(video.downloadLink);
+    const watch = safeLink(video.watchLink);
+
+    if (download) {
+      const link = makeText("a", "detail-button download-button", "⬇ DOWNLOAD");
+      link.href = download;
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+      buttons.appendChild(link);
+    }
+
+    if (watch) {
+      const link = makeText("a", "detail-button watch-button", "▶ ONLINE WATCH");
+      link.href = watch;
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+      buttons.appendChild(link);
+    }
+
+    if (!download && !watch) {
+      buttons.appendChild(makeText("p", "notice", "Viewing links will be added here."));
+    }
+
+    const back = document.createElement("a");
+    back.className = "back-button";
+    back.href = "index.html";
+    back.textContent = "← Back to Home";
+
+    root.replaceChildren(top, descriptionTitle, description, screenshotTitle, screenshots, linksTitle, buttons, back);
+  }
+</script>
+</body>
+</html>
