@@ -16,26 +16,36 @@ const categories = [
   "All Viral Video"
 ];
 
-const sampleTitles = [
+// अपने वीडियो की जानकारी यहाँ भरें।
+const titles = [
   {
-    title: "Example Movie One",
+    title: "Example Video One",
     year: "2026",
     language: "Hindi",
-    type: "Movie",
+    type: "Video",
+    category: "Instagram Viral Video",
+    genre: "Viral Video",
     poster: "",
-    description: "Demo movie card for website design."
+    description: "Video description goes here.",
+    screenshots: [],
+    downloadLink: "",
+    watchLink: ""
   },
   {
-    title: "Example Web Series",
+    title: "Example Video Two",
     year: "2026",
     language: "English",
-    type: "Web Series",
+    type: "Video",
+    category: "English Video",
+    genre: "Viral Video",
     poster: "",
-    description: "Demo web series card for website design."
+    description: "Video description goes here.",
+    screenshots: [],
+    downloadLink: "",
+    watchLink: ""
   }
 ];
 
-let titles = sampleTitles;
 let category = "All Viral Video";
 let currentPage = 0;
 
@@ -48,19 +58,12 @@ const search = $("searchInput");
 
 const pager = document.createElement("div");
 pager.id = "pagination";
-pager.style.cssText = `
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  flex-wrap:wrap;
-  gap:12px;
-  padding:10px 12px 30px;
-`;
-
+pager.style.cssText =
+  "display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:12px;padding:10px 12px 30px;";
 grid.insertAdjacentElement("afterend", pager);
 
-function norm(v) {
-  return String(v || "").toLowerCase().trim();
+function norm(value) {
+  return String(value || "").toLowerCase().trim();
 }
 
 function setupMenu() {
@@ -69,27 +72,27 @@ function setupMenu() {
   const wrap = document.createElement("div");
   wrap.className = "category-buttons";
 
-  categories.forEach(c => {
-    const b = document.createElement("a");
-    b.textContent = c;
-    b.className = "category-btn";
-    b.href = "#";
+  categories.forEach(name => {
+    const button = document.createElement("a");
+    button.textContent = name;
+    button.href = "#";
+    button.className = "category-btn";
 
-    if (c === category) b.classList.add("active");
+    if (name === category) button.classList.add("active");
 
-    b.onclick = e => {
-      e.preventDefault();
-      category = c;
+    button.onclick = event => {
+      event.preventDefault();
+      category = name;
       currentPage = 0;
 
-      wrap.querySelectorAll(".category-btn").forEach(x => {
-        x.classList.toggle("active", x.textContent === c);
+      wrap.querySelectorAll(".category-btn").forEach(item => {
+        item.classList.toggle("active", item.textContent === name);
       });
 
       render();
     };
 
-    wrap.appendChild(b);
+    wrap.appendChild(button);
   });
 
   nav.appendChild(wrap);
@@ -102,25 +105,26 @@ function setupMenu() {
 }
 
 function getFilteredTitles() {
-  const q = norm(search.value);
+  const query = norm(search.value);
 
-  return titles.filter(t => {
-    const text = norm([
-      t.title,
-      t.year,
-      t.language,
-      t.type,
-      t.genre,
-      t.description
+  return titles.filter(video => {
+    const searchable = norm([
+      video.title,
+      video.year,
+      video.language,
+      video.type,
+      video.genre,
+      video.category,
+      video.description
     ].join(" "));
 
-    const matchesSearch = text.includes(q);
+    const matchesSearch = searchable.includes(query);
 
     const matchesCategory =
       category === "All" ||
       category === "All Viral Video" ||
-      norm(t.category) === norm(category) ||
-      norm(t.genre) === norm(category);
+      norm(video.category) === norm(category) ||
+      norm(video.genre) === norm(category);
 
     return matchesSearch && matchesCategory;
   });
@@ -131,36 +135,28 @@ function getPageSize() {
 }
 
 function getPageStart() {
-  if (currentPage === 0) return 0;
-
-  return FIRST_PAGE_SIZE + (currentPage - 1) * NEXT_PAGE_SIZE;
+  return currentPage === 0
+    ? 0
+    : FIRST_PAGE_SIZE + (currentPage - 1) * NEXT_PAGE_SIZE;
 }
 
 function getTotalPages(count) {
-  if (count <= FIRST_PAGE_SIZE) return 1;
-
-  return 1 + Math.ceil(
-    (count - FIRST_PAGE_SIZE) / NEXT_PAGE_SIZE
-  );
+  return count <= FIRST_PAGE_SIZE
+    ? 1
+    : 1 + Math.ceil((count - FIRST_PAGE_SIZE) / NEXT_PAGE_SIZE);
 }
 
-function createPageButton(label, disabled, action) {
+function pageButton(label, disabled, action) {
   const button = document.createElement("button");
-
   button.type = "button";
   button.textContent = label;
   button.disabled = disabled;
 
   button.style.cssText = `
-    border:0;
-    border-radius:25px;
-    padding:12px 20px;
+    border:0;border-radius:25px;padding:12px 20px;
     background:${disabled ? "#555" : "#ff008c"};
-    color:#fff;
-    font-size:14px;
-    font-weight:800;
-    cursor:${disabled ? "not-allowed" : "pointer"};
-    opacity:${disabled ? "0.55" : "1"};
+    color:#fff;font-size:14px;font-weight:800;
+    opacity:${disabled ? ".55" : "1"};
   `;
 
   button.onclick = action;
@@ -171,44 +167,29 @@ function renderPagination(count) {
   pager.replaceChildren();
 
   const totalPages = getTotalPages(count);
+  if (!count || totalPages <= 1) return;
 
-  if (count === 0 || totalPages <= 1) {
-    return;
-  }
+  const previous = pageButton("❮ PREVIOUS", currentPage === 0, () => {
+    currentPage--;
+    render();
+    grid.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
 
-  const previous = createPageButton(
-    "❮ PREVIOUS",
-    currentPage === 0,
-    () => {
-      if (currentPage > 0) {
-        currentPage--;
-        render();
-        grid.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
-    }
-  );
+  const info = document.createElement("span");
+  info.textContent = `Page ${currentPage + 1} of ${totalPages}`;
+  info.style.color = "#fff";
 
-  const pageInfo = document.createElement("span");
-  pageInfo.textContent = `Page ${currentPage + 1} of ${totalPages}`;
-  pageInfo.style.cssText = `
-    color:#fff;
-    font-size:14px;
-    font-weight:700;
-  `;
-
-  const next = createPageButton(
+  const next = pageButton(
     "NEXT ❯",
     currentPage >= totalPages - 1,
     () => {
-      if (currentPage < totalPages - 1) {
-        currentPage++;
-        render();
-        grid.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
+      currentPage++;
+      render();
+      grid.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   );
 
-  pager.append(previous, pageInfo, next);
+  pager.append(previous, info, next);
 }
 
 function render() {
@@ -221,59 +202,56 @@ function render() {
     currentPage = Math.max(0, totalPages - 1);
   }
 
-  const start = getPageStart();
-  const pageSize = getPageSize();
-  const shown = filtered.slice(start, start + pageSize);
+  const shown = filtered.slice(
+    getPageStart(),
+    getPageStart() + getPageSize()
+  );
 
   $("emptyState").hidden = filtered.length > 0;
   $("emptyState").textContent =
-    filtered.length === 0 ? "No titles found." : "";
+    filtered.length ? "" : "No titles found.";
 
-  shown.forEach(t => {
-    const a = document.createElement("a");
-    a.className = "card";
+  shown.forEach(video => {
+    const index = titles.indexOf(video);
+    const card = document.createElement("a");
 
-    const originalIndex = titles.indexOf(t);
-    a.href = "video.html?id=" + originalIndex;
+    card.className = "card";
+    card.href = "video.html?id=" + index;
 
     const inner = document.createElement("div");
     inner.className = "inner";
 
-    const img = t.poster
-      ? document.createElement("img")
-      : document.createElement("div");
+    let poster;
 
-    img.className = t.poster ? "poster" : "placeholder";
-
-    if (t.poster) {
-      img.src = t.poster;
-      img.alt = t.title;
-      img.loading = "lazy";
+    if (video.poster) {
+      poster = document.createElement("img");
+      poster.src = video.poster;
+      poster.alt = video.title;
+      poster.loading = "lazy";
+      poster.className = "poster";
     } else {
-      img.textContent = "IV";
+      poster = document.createElement("div");
+      poster.className = "placeholder";
+      poster.textContent = "IV";
     }
 
     const info = document.createElement("div");
     info.className = "info";
 
-    const h = document.createElement("h3");
-    h.textContent = t.title;
+    const title = document.createElement("h3");
+    title.textContent = video.title;
 
-    const meta = document.createElement("div");
-    meta.className = "meta";
-    meta.hidden = true;
-
-    info.append(h, meta);
-    inner.append(img, info);
-    a.appendChild(inner);
-    grid.appendChild(a);
+    info.appendChild(title);
+    inner.append(poster, info);
+    card.appendChild(inner);
+    grid.appendChild(card);
   });
 
   renderPagination(filtered.length);
 }
 
-$("searchForm").onsubmit = e => {
-  e.preventDefault();
+$("searchForm").onsubmit = event => {
+  event.preventDefault();
   currentPage = 0;
   render();
 };
