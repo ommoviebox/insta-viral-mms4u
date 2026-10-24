@@ -1,205 +1,168 @@
-
 <!doctype html>
+
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#000">
   <title>Video Details - Insta Viral MMS4u</title>
-  <link rel="stylesheet" href="style.css">
-
-  <style>
-    .detail-page {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 18px;
-    }
+  <link rel="stylesheet" href="style.css">  <style>
+    .detail-page { max-width:900px; margin:0 auto; padding:18px; }
 
     .detail-hero {
-      display: grid;
-      grid-template-columns: minmax(110px, 32%) minmax(0, 1fr);
-      align-items: center;
-      gap: 18px;
-      padding: 24px;
-      margin: 12px 0 30px;
-      background: #142037;
-      border: 1px solid #263653;
-      border-radius: 32px;
+      display:grid;
+      grid-template-columns:minmax(110px,32%) minmax(0,1fr);
+      align-items:center;
+      gap:18px;
+      padding:24px;
+      margin:12px 0 30px;
+      background:#142037;
+      border:1px solid #263653;
+      border-radius:32px;
     }
 
     .detail-poster {
-      display: block;
-      width: 100%;
-      aspect-ratio: 2 / 3;
-      object-fit: cover;
-      background: #151515;
-      border-radius: 20px;
+      display:block;
+      width:100%;
+      aspect-ratio:2/3;
+      object-fit:cover;
+      background:#151515;
+      border-radius:20px;
     }
 
     .poster-placeholder {
-      display: grid;
-      place-items: center;
-      color: #777;
-      font-size: 28px;
-      font-weight: 900;
+      display:grid;
+      place-items:center;
+      color:#777;
+      font-size:28px;
+      font-weight:900;
     }
 
     .detail-title {
-      margin: 0;
-      color: #f5f6fb;
-      font-size: clamp(20px, 3.4vw, 32px);
-      font-weight: 800;
-      line-height: 1.35;
-      overflow-wrap: anywhere;
+      margin:0;
+      color:#f5f6fb;
+      font-size:clamp(20px,3.4vw,32px);
+      font-weight:800;
+      line-height:1.35;
+      overflow-wrap:anywhere;
     }
 
-    .info-stack {
-      display: grid;
-      gap: 12px;
-    }
+    .info-stack { display:grid; gap:12px; }
 
     .info-card {
-      padding: 20px 22px;
-      background: #142037;
-      border: 1px solid #263653;
-      border-radius: 24px;
-      color: #f5f6fb;
-      font-size: clamp(16px, 2.5vw, 23px);
-      font-weight: 600;
-      line-height: 1.5;
-      overflow-wrap: anywhere;
+      padding:20px 22px;
+      background:#142037;
+      border:1px solid #263653;
+      border-radius:24px;
+      color:#f5f6fb;
+      font-size:clamp(16px,2.5vw,23px);
+      font-weight:600;
+      line-height:1.5;
+      overflow-wrap:anywhere;
     }
 
     .info-card strong {
-      color: #8998b2;
-      font-size: .78em;
-      font-weight: 900;
-      letter-spacing: .3px;
+      color:#8998b2;
+      font-size:.78em;
+      font-weight:900;
+      letter-spacing:.3px;
     }
 
     .section-title {
-      margin: 22px -18px 0;
-      padding: 28px 16px;
-      text-align: center;
-      background: #0d1523;
-      color: #f5f6fb;
-      font-size: clamp(24px, 4vw, 38px);
-      font-weight: 900;
+      margin:22px -18px 0;
+      padding:28px 16px;
+      text-align:center;
+      background:#0d1523;
+      color:#f5f6fb;
+      font-size:clamp(24px,4vw,38px);
+      font-weight:900;
     }
 
     .screenshots {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 4px;
-      margin: 18px -8px 28px;
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:4px;
+      margin:18px -8px 28px;
     }
 
     .screenshots img {
-      display: block;
-      width: 100%;
-      height: auto;
-      border: 2px solid #e5e5e5;
-      border-radius: 4px;
-      background: #151515;
+      display:block;
+      width:100%;
+      height:auto;
+      border:2px solid #e5e5e5;
+      border-radius:4px;
+      background:#151515;
     }
 
-    .detail-buttons {
-      display: grid;
-      gap: 12px;
-      margin: 18px 0 26px;
-    }
+    .detail-buttons { display:grid; gap:12px; margin:18px 0 26px; }
 
     .detail-button {
-      display: block;
-      text-align: center;
-      text-decoration: none;
-      font-weight: 900;
-      padding: 16px 12px;
-      border-radius: 10px;
-      color: #000;
+      display:block;
+      text-align:center;
+      text-decoration:none;
+      font-weight:900;
+      padding:16px 12px;
+      border-radius:10px;
+      color:#000;
     }
 
-    .download-button { background: #19b86b; }
-    .watch-button { background: #ff9800; }
+    .download-button { background:#19b86b; }
+    .watch-button { background:#ff9800; }
 
     .back-button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      background: #c6ff00;
-      color: #000;
-      text-decoration: none;
-      padding: 13px 20px;
-      border-radius: 50px;
-      font-weight: 900;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      background:#c6ff00;
+      color:#000;
+      text-decoration:none;
+      padding:13px 20px;
+      border-radius:50px;
+      font-weight:900;
     }
 
-    .notice {
-      color: #aaa;
-      line-height: 1.6;
-    }
+    .notice { color:#aaa; line-height:1.6; }
 
-    @media (max-width: 480px) {
-      .detail-page { padding: 10px; }
-
+    @media(max-width:480px) {
+      .detail-page { padding:10px; }
       .detail-hero {
-        grid-template-columns: minmax(100px, 34%) minmax(0, 1fr);
-        gap: 14px;
-        padding: 16px;
-        border-radius: 26px;
-        margin-bottom: 22px;
+        grid-template-columns:minmax(100px,34%) minmax(0,1fr);
+        gap:14px;
+        padding:16px;
+        border-radius:26px;
+        margin-bottom:22px;
       }
-
-      .detail-poster { border-radius: 18px; }
-
-      .info-card {
-        padding: 17px 16px;
-        border-radius: 22px;
-      }
-
-      .section-title {
-        margin-left: -10px;
-        margin-right: -10px;
-        padding: 26px 10px;
-      }
+      .detail-poster { border-radius:18px; }
+      .info-card { padding:17px 16px; border-radius:22px; }
+      .section-title { margin-left:-10px; margin-right:-10px; padding:26px 10px; }
     }
-  </style>
-</head>
-
-<body>
+  </style></head><body>
 <header>
   <a class="brand" href="index.html" aria-label="Home">
     <video class="video-logo" autoplay muted loop playsinline preload="auto">
       <source src="./Logo.mp4" type="video/mp4">
     </video>
   </a>
-</header>
-
-<div class="actions">
+</header><div class="actions">
   <a class="back-button" href="index.html">← HOME</a>
   <a class="telegram" href="https://t.me/" target="_blank" rel="noopener noreferrer">
     ✈ JOIN TELEGRAM
   </a>
-</div>
-
-<main class="detail-page" id="details">
+</div><main class="detail-page" id="details">
   <p class="notice">Loading video details...</p>
-</main>
-
-<footer>
+</main><footer>
   Insta Viral MMS4u · Entertainment information and authorized links
-</footer>
-
-<script type="module">
-  import { videos } from "./videos.js";
+</footer><script type="module">
+  import { videos as localVideos } from "./videos.js";
+  import { db } from "./firebase-config.js";
+  import {
+    doc,
+    getDoc
+  } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
 
   const params = new URLSearchParams(location.search);
   const rawId = params.get("id");
-  const id = rawId !== null && /^\d+$/.test(rawId)
-    ? Number(rawId)
-    : -1;
-
-  const video = videos[id];
+  const source = params.get("source");
   const root = document.getElementById("details");
 
   function addText(tag, className, text) {
@@ -212,30 +175,32 @@
   function validLink(value) {
     try {
       const url = new URL(value, location.href);
-      return ["http:", "https:"].includes(url.protocol)
-        ? url.href
-        : "";
+      return ["http:", "https:"].includes(url.protocol) ? url.href : "";
     } catch {
       return "";
     }
   }
 
-  if (!video) {
+  function showError(message) {
     const heading = addText("h2", "section-title", "Video not found");
-    const message = addText("p", "notice", "Please return to the home page.");
+    const text = addText("p", "notice", message);
     const back = addText("a", "back-button", "← Back to Home");
     back.href = "index.html";
-    root.replaceChildren(heading, message, back);
-  } else {
-    document.title = (video.title || "Video Details") +
-      " - Insta Viral MMS4u";
+    root.replaceChildren(heading, text, back);
+  }
 
-    // Top box: poster and title only
+  function renderVideo(video) {
+    if (!video) {
+      showError("Please return to the home page and select a video.");
+      return;
+    }
+
+    document.title = (video.title || "Video Details") + " - Insta Viral MMS4u";
+
     const hero = document.createElement("section");
     hero.className = "detail-hero";
 
     let poster;
-
     if (video.poster) {
       poster = document.createElement("img");
       poster.className = "detail-poster";
@@ -248,7 +213,6 @@
     const title = addText("h1", "detail-title", video.title || "Untitled Video");
     hero.append(poster, title);
 
-    // Name and Genre boxes only
     const infoStack = document.createElement("section");
     infoStack.className = "info-stack";
 
@@ -268,50 +232,70 @@
 
     infoStack.append(nameCard, genreCard);
 
-    // Screenshots
     const screenshotTitle = addText("h2", "section-title", "▱ Screenshots ▱");
     const screenshots = document.createElement("div");
     screenshots.className = "screenshots";
 
-    (Array.isArray(video.screenshots) ? video.screenshots : [])
-      .filter(Boolean)
-      .forEach(src => {
-        const image = document.createElement("img");
-        image.src = src;
-        image.alt = "Video screenshot";
-        image.loading = "lazy";
-        screenshots.appendChild(image);
-      });
+    const screenshotList = Array.isArray(video.screenshots)
+      ? video.screenshots
+      : [];
+
+    screenshotList.filter(Boolean).forEach(src => {
+      const image = document.createElement("img");
+      image.src = src;
+      image.alt = "Video screenshot";
+      image.loading = "lazy";
+      screenshots.appendChild(image);
+    });
 
     if (!screenshots.children.length) {
-      screenshots.appendChild(addText("p", "notice", "No screenshots added yet."));
+      screenshots.appendChild(
+        addText("p", "notice", "No screenshots added yet.")
+      );
     }
 
-    // Download and online watch links
-    const linksTitle = addText("h2", "section-title", "Download Links 👇");
+    const linksTitle = addText("h2", "section-title", "Watch / Download Links 👇");
     const buttons = document.createElement("div");
     buttons.className = "detail-buttons";
 
-    const download = validLink(video.downloadLink);
-    const watch = validLink(video.watchLink);
+    // New Firebase admin panel saves an array of buttons.
+    const customButtons = Array.isArray(video.buttons) ? video.buttons : [];
 
-    if (download) {
-      const link = addText("a", "detail-button download-button", "⬇ DOWNLOAD");
-      link.href = download;
+    customButtons.forEach(item => {
+      const url = validLink(item && item.url);
+      if (!url) return;
+
+      const label = String(item.label || "OPEN LINK").trim();
+      const link = addText("a", "detail-button download-button", label);
+      link.href = url;
       link.target = "_blank";
       link.rel = "noopener noreferrer";
       buttons.appendChild(link);
+    });
+
+    // Support old videos.js sample fields too.
+    if (!customButtons.length) {
+      const download = validLink(video.downloadLink);
+      const watch = validLink(video.watchLink);
+
+      if (download) {
+        const link = addText("a", "detail-button download-button", "⬇ DOWNLOAD");
+        link.href = download;
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+        buttons.appendChild(link);
+      }
+
+      if (watch) {
+        const link = addText("a", "detail-button watch-button", "▶ ONLINE WATCH");
+        link.href = watch;
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+        buttons.appendChild(link);
+      }
     }
 
-    if (watch) {
-      const link = addText("a", "detail-button watch-button", "▶ ONLINE WATCH");
-      link.href = watch;
-      link.target = "_blank";
-      link.rel = "noopener noreferrer";
-      buttons.appendChild(link);
-    }
-
-    if (!download && !watch) {
+    if (!buttons.children.length) {
       buttons.appendChild(addText("p", "notice", "Links will be added here."));
     }
 
@@ -328,6 +312,39 @@
       back
     );
   }
-</script>
-</body>
+
+  async function loadVideo() {
+    if (!rawId) {
+      showError("No video was selected.");
+      return;
+    }
+
+    if (source === "firebase") {
+      try {
+        const snapshot = await getDoc(doc(db, "videos", rawId));
+
+        if (!snapshot.exists() || snapshot.data().published !== true) {
+          showError("This video is not available.");
+          return;
+        }
+
+        renderVideo(snapshot.data());
+      } catch (error) {
+        console.error("Could not load video:", error);
+        showError("Could not load this video. Please try again later.");
+      }
+      return;
+    }
+
+    if (!/^\d+$/.test(rawId)) {
+      showError("Invalid video link.");
+      return;
+    }
+
+    const index = Number(rawId);
+    renderVideo(localVideos[index]);
+  }
+
+  loadVideo();
+</script></body>
 </html>
