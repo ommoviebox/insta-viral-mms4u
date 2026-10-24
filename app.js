@@ -1,4 +1,6 @@
 
+import { videos } from "./videos.js";
+
 const $ = id => document.getElementById(id);
 
 const categories = [
@@ -16,35 +18,7 @@ const categories = [
   "All Viral Video"
 ];
 
-// अपने वीडियो की जानकारी यहाँ भरें।
-const titles = [
-  {
-    title: "Example Video One",
-    year: "2026",
-    language: "Hindi",
-    type: "Video",
-    category: "Instagram Viral Video",
-    genre: "Viral Video",
-    poster: "",
-    description: "Video description goes here.",
-    screenshots: [],
-    downloadLink: "",
-    watchLink: ""
-  },
-  {
-    title: "Example Video Two",
-    year: "2026",
-    language: "English",
-    type: "Video",
-    category: "English Video",
-    genre: "Viral Video",
-    poster: "",
-    description: "Video description goes here.",
-    screenshots: [],
-    downloadLink: "",
-    watchLink: ""
-  }
-];
+const titles = videos;
 
 let category = "All Viral Video";
 let currentPage = 0;
@@ -60,6 +34,7 @@ const pager = document.createElement("div");
 pager.id = "pagination";
 pager.style.cssText =
   "display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:12px;padding:10px 12px 30px;";
+
 grid.insertAdjacentElement("afterend", pager);
 
 function norm(value) {
@@ -226,7 +201,7 @@ function render() {
     if (video.poster) {
       poster = document.createElement("img");
       poster.src = video.poster;
-      poster.alt = video.title;
+      poster.alt = video.title || "Video poster";
       poster.loading = "lazy";
       poster.className = "poster";
     } else {
@@ -239,7 +214,7 @@ function render() {
     info.className = "info";
 
     const title = document.createElement("h3");
-    title.textContent = video.title;
+    title.textContent = video.title || "Untitled Video";
 
     info.appendChild(title);
     inner.append(poster, info);
