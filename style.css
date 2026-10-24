@@ -419,3 +419,30 @@ border-color: #ed008c !important;
   object-fit: contain;
   background: #000;
 }
+/* Fix video logo visibility and header spacing */
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px !important;
+  min-height: 0 !important;
+}
+
+.brand:has(video.video-logo) {
+  display: block !important;
+  width: 100% !important;
+  max-width: 600px !important;
+  margin: 0 auto !important;
+  font-size: 0 !important;
+  line-height: 0 !important;
+}
+
+video.video-logo {
+  display: block !important;
+  width: 100% !important;
+  height: auto !important;
+  max-height: 180px !important;
+  min-height: 0 !important;
+  object-fit: contain !important;
+  background: #000 !important;
+}
