@@ -3,52 +3,48 @@
 <html lang="hi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<meta name="theme-color" content="#080808">
 <title>Admin Panel - Insta Viral MMS4u</title>
 <style>
 *{box-sizing:border-box}
 body{margin:0;padding:16px;background:#080808;color:#f5f5f5;font-family:Arial,sans-serif}
 .wrap{max-width:760px;margin:18px auto}
 .panel{background:#171717;border:1px solid #333;border-radius:14px;padding:18px;margin-bottom:16px}
-h1{text-align:center;font-size:25px;margin:4px 0 22px}
-h2{font-size:20px;margin:4px 0 16px}
+h1{text-align:center;font-size:25px}
 label{display:block;font-size:14px;margin:12px 0 6px;color:#ddd}
 input,textarea,select,button{width:100%;padding:12px;border-radius:8px;font-size:15px}
 input,textarea,select{background:#090909;color:#fff;border:1px solid #444}
-textarea{min-height:90px;resize:vertical}
-button{border:0;background:#e91e63;color:#fff;font-weight:bold;cursor:pointer;margin-top:12px}
+textarea{min-height:90px}
+button{border:0;background:#e91e63;color:white;font-weight:bold;cursor:pointer;margin-top:12px}
 button.secondary{background:#333}
 button.danger{background:#b3261e}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .hidden{display:none!important}
 .muted{color:#aaa;font-size:13px;line-height:1.5}
-.status{overflow-wrap:anywhere;line-height:1.5}
-.video-item{padding:12px 0;border-top:1px solid #333}
-.video-item strong{display:block;margin-bottom:5px}
+.status{overflow-wrap:anywhere}
+.video-item,.button-row{padding:12px 0;border-top:1px solid #333}
 .actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.actions button{margin-top:8px}
-@media(max-width:480px){.grid{grid-template-columns:1fr}.panel{padding:14px}body{padding:10px}}
+@media(max-width:480px){.panel{padding:14px}body{padding:10px}}
 </style>
 </head>
 <body>
 <div class="wrap">
+
 <section class="panel">
 <h1>Insta Viral MMS4u</h1>
 <div id="loginBox">
 <h2>Admin Login</h2>
 <form id="loginForm">
-<label for="email">Admin Email</label>
+<label>Admin Email</label>
 <input id="email" type="email" autocomplete="username" required>
-<label for="password">Password</label>
+<label>Password</label>
 <input id="password" type="password" autocomplete="current-password" required>
 <button type="submit">Login</button>
 </form>
 </div>
 <p id="status" class="status" role="status"></p>
 <div id="dashboard" class="hidden">
-<p class="muted">Logged in as authorized admin.</p>
+<p class="muted">Authorized admin session active.</p>
 <button id="logoutBtn" class="secondary" type="button">Logout</button>
 </div>
 </section>
@@ -57,26 +53,59 @@ button.danger{background:#b3261e}
 <h2 id="formHeading">Add Video</h2>
 <form id="videoForm">
 <input type="hidden" id="docId">
-<label for="title">Video Title *</label>
-<input id="title" required maxlength="180" placeholder="Video title">
-<div class="grid">
-<div><label for="year">Year</label><input id="year" maxlength="10" placeholder="2026"></div>
-<div><label for="language">Language</label><input id="language" placeholder="Hindi"></div>
+
+<label>Video Title *</label>
+<input id="title" required maxlength="180">
+
+<label>Category *</label>
+<select id="category" required>
+<option value="">Select Category</option>
+<option>Instagram Viral Video</option>
+<option>Hindi Video</option>
+<option>English Video</option>
+<option>Tamil Video</option>
+<option>Telugu Video</option>
+<option>Malayalam Video</option>
+<option>Web Series</option>
+<option>Short Film</option>
+<option value="__custom">+ Add Custom Category</option>
+</select>
+
+<div id="customCategoryWrap" class="hidden">
+<label>Custom Category Name</label>
+<input id="customCategory" placeholder="Enter category name">
 </div>
-<div class="grid">
-<div><label for="type">Type</label>
-<select id="type"><option>Video</option><option>Web Series</option><option>Short Film</option></select></div>
-<div><label for="category">Category</label><input id="category" placeholder="Instagram Viral Video"></div>
-</div>
-<label for="genre">Genre</label><input id="genre" placeholder="Viral Video">
-<label for="poster">Poster URL</label><input id="poster" type="url" placeholder="https://...">
-<label for="screenshots">Screenshot URLs (one URL per line)</label>
-<textarea id="screenshots" placeholder="https://...&#10;https://..."></textarea>
-<label for="description">Description</label><textarea id="description" placeholder="Video description"></textarea>
-<label for="watchLink">Authorized Watch URL</label><input id="watchLink" type="url" placeholder="https://...">
-<label for="downloadLink">Authorized Download URL</label><input id="downloadLink" type="url" placeholder="https://...">
-<label for="published">Publish status</label>
-<select id="published"><option value="true">Published</option><option value="false">Unpublished</option></select>
+
+<label>Type</label>
+<select id="type">
+<option>Video</option>
+<option>Web Series</option>
+<option>Short Film</option>
+</select>
+
+<label>Genre</label>
+<input id="genre" placeholder="Viral Video">
+
+<label>Poster URL</label>
+<input id="poster" type="url" placeholder="https://...">
+
+<label>Screenshot URLs (one URL per line)</label>
+<textarea id="screenshots" placeholder="https://..."></textarea>
+
+<label>Description</label>
+<textarea id="description"></textarea>
+
+<h3>Watch / Download / Custom Buttons</h3>
+<p class="muted">हर बटन का नाम और लिंक लिखें। ज़रूरत के अनुसार कई बटन जोड़ें।</p>
+<div id="buttonsContainer"></div>
+<button type="button" id="addButton" class="secondary">+ Add Button</button>
+
+<label>Publish Status</label>
+<select id="published">
+<option value="true">Published</option>
+<option value="false">Unpublished</option>
+</select>
+
 <button type="submit" id="saveBtn">Save Video</button>
 <button type="button" id="cancelEdit" class="secondary hidden">Cancel Edit</button>
 </form>
@@ -85,48 +114,103 @@ button.danger{background:#b3261e}
 <section id="listPanel" class="panel hidden">
 <h2>Saved Videos</h2>
 <button id="refreshBtn" class="secondary" type="button">Refresh List</button>
-<div id="videoList"><p class="muted">No videos loaded yet.</p></div>
+<div id="videoList"></div>
 </section>
 </div>
 
 <script type="module">
-import { auth, db } from "./firebase-config.js";
+import {auth,db} from "./firebase-config.js";
 import {
-signInWithEmailAndPassword, signOut, onAuthStateChanged
+signInWithEmailAndPassword,signOut,onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
 import {
-collection, getDocs, addDoc, updateDoc, deleteDoc, doc, serverTimestamp
+collection,getDocs,addDoc,updateDoc,deleteDoc,doc,serverTimestamp
 } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
 
-const ADMIN_UID = "087LxEZu6ZVJF8xvJcJEMiEAVoq2";
-const $ = (id) => document.getElementById(id);
-let activeUser = null;
-let videosCache = [];
+const ADMIN_UID="087LxEZu6ZVJF8xvJcJEMiEAVoq2";
+const $=id=>document.getElementById(id);
+let activeUser=null,videosCache=[];
 
-function message(text){$("status").textContent=text}
-function adminAllowed(user){return Boolean(user && user.uid===ADMIN_UID)}
+const allowed=u=>Boolean(u&&u.uid===ADMIN_UID);
+const msg=t=>$("status").textContent=t;
 
-$("loginForm").addEventListener("submit",async(event)=>{
-event.preventDefault();
-message("Logging in...");
-try{
-await signInWithEmailAndPassword(auth,$("email").value.trim(),$("password").value);
-}catch(error){
-message("Login failed. Email/password check karein. ("+error.code+")");
+function addButtonRow(label="",url=""){
+const row=document.createElement("div");
+row.className="button-row";
+const nl=document.createElement("label");
+nl.textContent="Button Name";
+const n=document.createElement("input");
+n.className="btn-name";
+n.placeholder="Online Watch / Download 720p";
+n.value=label;
+n.required=true;
+const ul=document.createElement("label");
+ul.textContent="Button URL";
+const l=document.createElement("input");
+l.type="url";
+l.className="btn-url";
+l.placeholder="https://...";
+l.value=url;
+l.required=true;
+const r=document.createElement("button");
+r.type="button";
+r.className="danger";
+r.textContent="Remove Button";
+r.onclick=()=>row.remove();
+row.append(nl,n,ul,l,r);
+$("buttonsContainer").append(row);
 }
-});
 
-onAuthStateChanged(auth,async(user)=>{
-activeUser=user;
-if(!user){
+function setButtons(items){
+$("buttonsContainer").replaceChildren();
+if(items&&items.length){
+items.forEach(x=>addButtonRow(x.label||x.name||"",x.url||x.link||""));
+}else{
+addButtonRow("Online Watch","");
+addButtonRow("Download","");
+}
+}
+
+function readButtons(){
+return [...$("buttonsContainer").querySelectorAll(".button-row")]
+.map(r=>({
+label:r.querySelector(".btn-name").value.trim(),
+url:r.querySelector(".btn-url").value.trim()
+}))
+.filter(x=>x.label&&x.url);
+}
+
+$("addButton").onclick=()=>addButtonRow();
+
+$("category").onchange=()=>{
+$("customCategoryWrap").classList.toggle(
+"hidden",$("category").value!=="__custom"
+);
+};
+
+$("loginForm").onsubmit=async e=>{
+e.preventDefault();
+msg("Logging in...");
+try{
+await signInWithEmailAndPassword(
+auth,$("email").value.trim(),$("password").value
+);
+}catch(err){
+msg("Login failed: "+err.code);
+}
+};
+
+onAuthStateChanged(auth,async u=>{
+activeUser=u;
+if(!u){
 $("loginBox").classList.remove("hidden");
 $("dashboard").classList.add("hidden");
 $("editorPanel").classList.add("hidden");
 $("listPanel").classList.add("hidden");
 return;
 }
-if(!adminAllowed(user)){
-message("Access denied: ye account authorized admin nahi hai.");
+if(!allowed(u)){
+msg("Access denied: this is not the authorized admin account.");
 await signOut(auth);
 return;
 }
@@ -134,14 +218,14 @@ $("loginBox").classList.add("hidden");
 $("dashboard").classList.remove("hidden");
 $("editorPanel").classList.remove("hidden");
 $("listPanel").classList.remove("hidden");
-message("Admin login successful.");
+msg("Admin login successful.");
 await loadVideos();
 });
 
-$("logoutBtn").addEventListener("click",async()=>{
+$("logoutBtn").onclick=async()=>{
 await signOut(auth);
-message("Logged out.");
-});
+msg("Logged out");
+};
 
 function clearForm(){
 $("videoForm").reset();
@@ -149,109 +233,144 @@ $("docId").value="";
 $("formHeading").textContent="Add Video";
 $("saveBtn").textContent="Save Video";
 $("cancelEdit").classList.add("hidden");
+$("customCategoryWrap").classList.add("hidden");
+setButtons([]);
 }
-$("cancelEdit").addEventListener("click",clearForm);
+$("cancelEdit").onclick=clearForm;
 
-$("videoForm").addEventListener("submit",async(event)=>{
-event.preventDefault();
-if(!adminAllowed(activeUser)){message("Access denied.");return}
+$("videoForm").onsubmit=async e=>{
+e.preventDefault();
+if(!allowed(activeUser)){
+msg("Access denied");
+return;
+}
+
+let category=$("category").value;
+if(category==="__custom"){
+category=$("customCategory").value.trim();
+}
+if(!category){
+msg("Select or enter a category");
+return;
+}
+
 const data={
 title:$("title").value.trim(),
-year:$("year").value.trim(),
-language:$("language").value.trim(),
+category,
 type:$("type").value,
-category:$("category").value.trim(),
 genre:$("genre").value.trim(),
 poster:$("poster").value.trim(),
-screenshots:$("screenshots").value.split(/\r?\n/).map(v=>v.trim()).filter(Boolean),
+screenshots:$("screenshots").value
+.split(/\r?\n/).map(x=>x.trim()).filter(Boolean),
 description:$("description").value.trim(),
-watchLink:$("watchLink").value.trim(),
-downloadLink:$("downloadLink").value.trim(),
+buttons:readButtons(),
 published:$("published").value==="true",
 updatedAt:serverTimestamp()
 };
+
 try{
 const id=$("docId").value;
 if(id){
 await updateDoc(doc(db,"videos",id),data);
-message("Video updated successfully.");
+msg("Video updated");
 }else{
 data.createdAt=serverTimestamp();
 await addDoc(collection(db,"videos"),data);
-message("Video saved successfully.");
+msg("Video saved");
 }
 clearForm();
 await loadVideos();
-}catch(error){
-message("Save error: "+error.code+". Firestore Rules/connection check karein.");
+}catch(err){
+msg("Save error: "+err.code+". Firestore Rules check karein");
 }
-});
+};
 
 async function loadVideos(){
-if(!adminAllowed(activeUser))return;
+if(!allowed(activeUser))return;
 $("videoList").textContent="Loading...";
 try{
-const snap=await getDocs(collection(db,"videos"));
-videosCache=snap.docs.map(item=>({id:item.id,...item.data()}));
-videosCache.sort((a,b)=>(b.updatedAt?.seconds||b.createdAt?.seconds||0)-(a.updatedAt?.seconds||a.createdAt?.seconds||0));
-renderVideos();
-}catch(error){
-$("videoList").textContent="Load error: "+error.code+". Firestore Rules check karein.";
+const s=await getDocs(collection(db,"videos"));
+videosCache=s.docs.map(x=>({id:x.id,...x.data()}));
+videosCache.sort((a,b)=>
+(b.updatedAt?.seconds||b.createdAt?.seconds||0)-
+(a.updatedAt?.seconds||a.createdAt?.seconds||0)
+);
+render();
+}catch(err){
+$("videoList").textContent="Load error: "+err.code+". Firestore Rules check karein";
 }
 }
 
-function renderVideos(){
+function render(){
 const list=$("videoList");
 list.replaceChildren();
 if(!videosCache.length){
-const p=document.createElement("p");
-p.className="muted";
-p.textContent="Abhi Firestore ke videos collection mein koi video nahi hai.";
-list.append(p);
+list.textContent="No videos found in Firestore videos collection.";
 return;
 }
-for(const item of videosCache){
-const card=document.createElement("div");
-card.className="video-item";
+for(const v of videosCache){
+const box=document.createElement("div");
+box.className="video-item";
 const title=document.createElement("strong");
-title.textContent=item.title||"Untitled video";
+title.textContent=v.title||"Untitled";
 const info=document.createElement("p");
 info.className="muted";
-info.textContent=(item.category||"No category")+" • "+(item.published?"Published":"Unpublished");
-const actions=document.createElement("div");
-actions.className="actions";
+info.textContent=(v.category||"No category")+" • "+(v.published?"Published":"Unpublished");
+const acts=document.createElement("div");
+acts.className="actions";
 const edit=document.createElement("button");
-edit.type="button";edit.className="secondary";edit.textContent="Edit";
-edit.addEventListener("click",()=>fillForm(item));
-const remove=document.createElement("button");
-remove.type="button";remove.className="danger";remove.textContent="Delete";
-remove.addEventListener("click",async()=>{
-if(!adminAllowed(activeUser)||!confirm('Delete "'+(item.title||"this video")+'"?'))return;
+edit.type="button";
+edit.className="secondary";
+edit.textContent="Edit";
+edit.onclick=()=>fill(v);
+const del=document.createElement("button");
+del.type="button";
+del.className="danger";
+del.textContent="Delete";
+del.onclick=async()=>{
+if(!allowed(activeUser)||!confirm("Delete this video?"))return;
 try{
-await deleteDoc(doc(db,"videos",item.id));
-message("Video deleted.");
+await deleteDoc(doc(db,"videos",v.id));
+msg("Video deleted");
 await loadVideos();
-}catch(error){message("Delete error: "+error.code)}
-});
-actions.append(edit,remove);
-card.append(title,info,actions);
-list.append(card);
+}catch(err){
+msg("Delete error: "+err.code);
+}
+};
+acts.append(edit,del);
+box.append(title,info,acts);
+list.append(box);
 }
 }
 
-function fillForm(item){
-$("docId").value=item.id;
-for(const field of ["title","year","language","type","category","genre","poster","description","watchLink","downloadLink"]){
-$(field).value=item[field]||"";
+function fill(v){
+$("docId").value=v.id;
+for(const f of ["title","type","genre","poster","description"]){
+$(f).value=v[f]||"";
 }
-$("screenshots").value=Array.isArray(item.screenshots)?item.screenshots.join("\n"):"";
-$("published").value=item.published===false?"false":"true";
+const opts=[...$("category").options].map(o=>o.value);
+if(opts.includes(v.category)&&v.category!=="__custom"){
+$("category").value=v.category;
+$("customCategoryWrap").classList.add("hidden");
+}else{
+$("category").value="__custom";
+$("customCategoryWrap").classList.remove("hidden");
+$("customCategory").value=v.category||"";
+}
+$("screenshots").value=Array.isArray(v.screenshots)?v.screenshots.join("\n"):"";
+$("published").value=v.published===false?"false":"true";
+setButtons(v.buttons||[
+...(v.watchLink?[{label:"Online Watch",url:v.watchLink}]:[]),
+...(v.downloadLink?[{label:"Download",url:v.downloadLink}]:[])
+]);
 $("formHeading").textContent="Edit Video";
 $("saveBtn").textContent="Update Video";
 $("cancelEdit").classList.remove("hidden");
 window.scrollTo({top:0,behavior:"smooth"});
 }
-$("refreshBtn").addEventListener("click",loadVideos);
+
+$("refreshBtn").onclick=loadVideos;
+setButtons([]);
 </script>
 </body>
 </html>
