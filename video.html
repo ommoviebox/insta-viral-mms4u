@@ -1,60 +1,184 @@
+
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#000">
-  <meta name="description" content="Video details and authorized viewing links.">
   <title>Video Details - Insta Viral MMS4u</title>
   <link rel="stylesheet" href="style.css">
+
   <style>
-    .detail-page{max-width:900px;margin:0 auto;padding:18px}
-    /* Top box: poster on the left, title only on the right */
-    .detail-hero{
-      display:grid;
-      grid-template-columns: minmax(110px, 32%) minmax(0,1fr);
-      align-items:center;
-      gap:18px;
-      padding:24px;
-      margin:12px 0 30px;
-      background:#142037;
-      border:1px solid #263653;
-      border-radius:32px;
+    .detail-page {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 18px;
     }
-    .detail-poster{
-      display:block;
-      width:100%;
-      aspect-ratio:2/3;
-      object-fit:cover;
-      background:#151515;
-      border-radius:20px;
+
+    .detail-hero {
+      display: grid;
+      grid-template-columns: minmax(110px, 32%) minmax(0, 1fr);
+      align-items: center;
+      gap: 18px;
+      padding: 24px;
+      margin: 12px 0 30px;
+      background: #142037;
+      border: 1px solid #263653;
+      border-radius: 32px;
     }
-    .poster-placeholder{display:grid;place-items:center;color:#777;font-size:28px;font-weight:900}
-    .detail-title{margin:0;color:#f5f6fb;font-size:clamp(20px,3.4vw,32px);font-weight:800;line-height:1.35;overflow-wrap:anywhere}
-    .info-stack{display:grid;gap:12px}
-    .info-card{padding:20px 22px;background:#142037;border:1px solid #263653;border-radius:24px;color:#f5f6fb;font-size:clamp(16px,2.5vw,23px);font-weight:600;line-height:1.5;overflow-wrap:anywhere}
-    .info-card strong{color:#8998b2;font-size:.78em;font-weight:900;letter-spacing:.3px}
-    .section-title{margin:22px -18px 0;padding:28px 16px;text-align:center;background:#0d1523;color:#f5f6fb;font-size:clamp(24px,4vw,38px);font-weight:900}
-    .screenshots{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px;margin:18px -8px 28px}
-    .screenshots img{display:block;width:100%;height:auto;border:2px solid #e5e5e5;border-radius:4px;background:#151515}
-    .detail-buttons{display:grid;gap:12px;margin:18px 0 26px}
-    .detail-button{display:block;text-align:center;text-decoration:none;font-weight:900;padding:16px 12px;border-radius:10px;color:#000}
-    .download-button{background:#19b86b}
-    .watch-button{background:#ff9800}
-    .back-button{display:inline-flex;align-items:center;justify-content:center;background:#c6ff00;color:#000;text-decoration:none;padding:13px 20px;border-radius:50px;font-weight:900}
-    .notice{color:#aaa;line-height:1.6}
-    @media(max-width:480px){
-      .detail-page{padding:10px}
-      .detail-hero{grid-template-columns: minmax(100px, 34%) minmax(0,1fr);gap:14px;padding:16px;border-radius:26px;margin-bottom:22px}
-      .detail-poster{border-radius:18px}
-      .info-card{padding:17px 16px;border-radius:22px}
-      .section-title{margin-left:-10px;margin-right:-10px;padding:26px 10px}
+
+    .detail-poster {
+      display: block;
+      width: 100%;
+      aspect-ratio: 2 / 3;
+      object-fit: cover;
+      background: #151515;
+      border-radius: 20px;
+    }
+
+    .poster-placeholder {
+      display: grid;
+      place-items: center;
+      color: #777;
+      font-size: 28px;
+      font-weight: 900;
+    }
+
+    .detail-title {
+      margin: 0;
+      color: #f5f6fb;
+      font-size: clamp(20px, 3.4vw, 32px);
+      font-weight: 800;
+      line-height: 1.35;
+      overflow-wrap: anywhere;
+    }
+
+    .info-stack {
+      display: grid;
+      gap: 12px;
+    }
+
+    .info-card {
+      padding: 20px 22px;
+      background: #142037;
+      border: 1px solid #263653;
+      border-radius: 24px;
+      color: #f5f6fb;
+      font-size: clamp(16px, 2.5vw, 23px);
+      font-weight: 600;
+      line-height: 1.5;
+      overflow-wrap: anywhere;
+    }
+
+    .info-card strong {
+      color: #8998b2;
+      font-size: .78em;
+      font-weight: 900;
+      letter-spacing: .3px;
+    }
+
+    .section-title {
+      margin: 22px -18px 0;
+      padding: 28px 16px;
+      text-align: center;
+      background: #0d1523;
+      color: #f5f6fb;
+      font-size: clamp(24px, 4vw, 38px);
+      font-weight: 900;
+    }
+
+    .screenshots {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 4px;
+      margin: 18px -8px 28px;
+    }
+
+    .screenshots img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border: 2px solid #e5e5e5;
+      border-radius: 4px;
+      background: #151515;
+    }
+
+    .detail-buttons {
+      display: grid;
+      gap: 12px;
+      margin: 18px 0 26px;
+    }
+
+    .detail-button {
+      display: block;
+      text-align: center;
+      text-decoration: none;
+      font-weight: 900;
+      padding: 16px 12px;
+      border-radius: 10px;
+      color: #000;
+    }
+
+    .download-button {
+      background: #19b86b;
+    }
+
+    .watch-button {
+      background: #ff9800;
+    }
+
+    .back-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #c6ff00;
+      color: #000;
+      text-decoration: none;
+      padding: 13px 20px;
+      border-radius: 50px;
+      font-weight: 900;
+    }
+
+    .notice {
+      color: #aaa;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 480px) {
+      .detail-page {
+        padding: 10px;
+      }
+
+      .detail-hero {
+        grid-template-columns: minmax(100px, 34%) minmax(0, 1fr);
+        gap: 14px;
+        padding: 16px;
+        border-radius: 26px;
+        margin-bottom: 22px;
+      }
+
+      .detail-poster {
+        border-radius: 18px;
+      }
+
+      .info-card {
+        padding: 17px 16px;
+        border-radius: 22px;
+      }
+
+      .section-title {
+        margin-left: -10px;
+        margin-right: -10px;
+        padding: 26px 10px;
+      }
     }
   </style>
 </head>
+
 <body>
+
 <header>
-  <a class="brand" href="index.html" aria-label="Insta Viral MMS4u Home">
+  <a class="brand" href="index.html" aria-label="Home">
     <video class="video-logo" autoplay muted loop playsinline preload="auto">
       <source src="./Logo.mp4" type="video/mp4">
     </video>
@@ -63,40 +187,36 @@
 
 <div class="actions">
   <a class="back-button" href="index.html">← HOME</a>
-  <a class="telegram" href="https://t.me/" target="_blank" rel="noopener noreferrer">✈ JOIN TELEGRAM</a>
+  <a class="telegram" href="https://t.me/" target="_blank" rel="noopener noreferrer">
+    ✈ JOIN TELEGRAM
+  </a>
 </div>
 
 <main class="detail-page" id="details">
   <p class="notice">Loading video details...</p>
 </main>
 
-<footer>Insta Viral MMS4u · Entertainment information and authorized links</footer>
+<footer>
+  Insta Viral MMS4u · Entertainment information and authorized links
+</footer>
 
 <script>
-  // Keep these entries in the same order as the titles array in app.js.
+  // Keep video entries in the same order as app.js.
   const videos = [
     {
       title: "Example Video One",
-      year: "2026",
-      language: "Hindi",
-      type: "Video",
       category: "Instagram Viral Video",
       genre: "Viral Video",
       poster: "",
-      description: "Video description goes here.",
       screenshots: [],
       downloadLink: "",
       watchLink: ""
     },
     {
       title: "Example Video Two",
-      year: "2026",
-      language: "English",
-      type: "Video",
       category: "English Video",
       genre: "Viral Video",
       poster: "",
-      description: "Video description goes here.",
       screenshots: [],
       downloadLink: "",
       watchLink: ""
@@ -105,98 +225,143 @@
 
   const params = new URLSearchParams(location.search);
   const rawId = params.get("id");
-  const id = rawId !== null && /^\d+$/.test(rawId) ? Number(rawId) : -1;
+  const id = rawId !== null && /^\d+$/.test(rawId)
+    ? Number(rawId)
+    : -1;
+
   const video = videos[id];
   const root = document.getElementById("details");
 
   function addText(tag, className, text) {
-    const node = document.createElement(tag);
-    node.className = className || "";
-    node.textContent = text || "";
-    return node;
+    const element = document.createElement(tag);
+    element.className = className || "";
+    element.textContent = text || "";
+    return element;
   }
 
   function validLink(value) {
     try {
       const url = new URL(value, location.href);
-      return ["http:", "https:"].includes(url.protocol) ? url.href : "";
+      return ["http:", "https:"].includes(url.protocol)
+        ? url.href
+        : "";
     } catch {
       return "";
     }
   }
 
   if (!video) {
-    const heading = addText("h2", "section-title", "Video not found");
-    const message = addText("p", "notice", "Please return to the home page.");
-    const back = addText("a", "back-button", "← Back to Home");
+    const heading = addText(
+      "h2",
+      "section-title",
+      "Video not found"
+    );
+
+    const message = addText(
+      "p",
+      "notice",
+      "Please return to the home page."
+    );
+
+    const back = addText(
+      "a",
+      "back-button",
+      "← Back to Home"
+    );
+
     back.href = "index.html";
     root.replaceChildren(heading, message, back);
-  } else {
-    document.title = (video.title || "Video Details") + " - Insta Viral MMS4u";
 
+  } else {
+    document.title =
+      (video.title || "Video Details") +
+      " - Insta Viral MMS4u";
+
+    // TOP BOX: ONLY POSTER + TITLE
     const hero = document.createElement("section");
     hero.className = "detail-hero";
 
     let poster;
+
     if (video.poster) {
       poster = document.createElement("img");
       poster.className = "detail-poster";
       poster.src = video.poster;
       poster.alt = video.title || "Video poster";
     } else {
-      poster = addText("div", "detail-poster poster-placeholder", "IV");
+      poster = addText(
+        "div",
+        "detail-poster poster-placeholder",
+        "IV"
+      );
     }
 
-    const title = addText("h1", "detail-title", video.title || "Untitled Video");
-    // IMPORTANT: hero contains only poster + title.
+    const title = addText(
+      "h1",
+      "detail-title",
+      video.title || "Untitled Video"
+    );
+
     hero.append(poster, title);
 
+    // ONLY NAME + GENRE BOXES
     const infoStack = document.createElement("section");
     infoStack.className = "info-stack";
 
     const nameCard = document.createElement("div");
     nameCard.className = "info-card";
-    const nameLabel = document.createElement("strong");
-    nameLabel.textContent = "NAME: ";
-    nameCard.append(nameLabel, document.createTextNode(video.title || "—"));
 
-    function infoCard(label, value) {
-      const card = document.createElement("div");
-      card.className = "info-card";
-      const strong = document.createElement("strong");
-      strong.textContent = label + ": ";
-      card.append(strong, document.createTextNode(value || "—"));
-      return card;
-    }
+    const nameLabel = addText("strong", "", "NAME: ");
+    nameCard.append(
+      nameLabel,
+      document.createTextNode(video.title || "—")
+    );
 
-    const genreCard = infoCard("GENRE", video.genre || video.category);
-    const yearCard = infoCard("RELEASE YEAR", video.year);
-    const languageCard = infoCard("LANGUAGE", video.language);
+    const genreCard = document.createElement("div");
+    genreCard.className = "info-card";
 
-    const descriptionCard = document.createElement("div");
-    descriptionCard.className = "info-card";
-    const descriptionLabel = addText("strong", "", "DESCRIPTION :-");
-    const descriptionText = addText("div", "", video.description || "No description added.");
-    descriptionText.style.marginTop = "10px";
-    descriptionCard.append(descriptionLabel, descriptionText);
+    const genreLabel = addText("strong", "", "GENRE: ");
+    genreCard.append(
+      genreLabel,
+      document.createTextNode(video.genre || video.category || "—")
+    );
 
-    infoStack.append(nameCard, genreCard, yearCard, languageCard, descriptionCard);
+    infoStack.append(nameCard, genreCard);
 
-    const screenshotTitle = addText("h2", "section-title", "▱ Screenshots ▱");
+    // SCREENSHOTS
+    const screenshotTitle = addText(
+      "h2",
+      "section-title",
+      "▱ Screenshots ▱"
+    );
+
     const screenshots = document.createElement("div");
     screenshots.className = "screenshots";
-    (Array.isArray(video.screenshots) ? video.screenshots : []).filter(Boolean).forEach(src => {
+
+    (Array.isArray(video.screenshots)
+      ? video.screenshots
+      : []
+    ).filter(Boolean).forEach(src => {
       const image = document.createElement("img");
       image.src = src;
       image.alt = "Video screenshot";
       image.loading = "lazy";
       screenshots.appendChild(image);
     });
+
     if (!screenshots.children.length) {
-      screenshots.appendChild(addText("p", "notice", "No screenshots added yet."));
+      screenshots.appendChild(
+        addText("p", "notice", "No screenshots added yet.")
+      );
     }
 
-    const linksTitle = addText("h2", "section-title", "Download Links 👇");
+    // DOWNLOAD / WATCH LINKS
+    const linksTitle = addText(
+      "h2",
+      "section-title",
+      "Download Links 👇"
+    );
+
     const buttons = document.createElement("div");
     buttons.className = "detail-buttons";
 
@@ -204,28 +369,55 @@
     const watch = validLink(video.watchLink);
 
     if (download) {
-      const link = addText("a", "detail-button download-button", "⬇ DOWNLOAD");
+      const link = addText(
+        "a",
+        "detail-button download-button",
+        "⬇ DOWNLOAD"
+      );
+
       link.href = download;
       link.target = "_blank";
       link.rel = "noopener noreferrer";
       buttons.appendChild(link);
     }
+
     if (watch) {
-      const link = addText("a", "detail-button watch-button", "▶ ONLINE WATCH");
+      const link = addText(
+        "a",
+        "detail-button watch-button",
+        "▶ ONLINE WATCH"
+      );
+
       link.href = watch;
       link.target = "_blank";
       link.rel = "noopener noreferrer";
       buttons.appendChild(link);
     }
+
     if (!download && !watch) {
-      buttons.appendChild(addText("p", "notice", "Links will be added here."));
+      buttons.appendChild(
+        addText("p", "notice", "Links will be added here.")
+      );
     }
 
-    const back = addText("a", "back-button", "← Back to Home");
+    const back = addText(
+      "a",
+      "back-button",
+      "← Back to Home"
+    );
     back.href = "index.html";
 
-    root.replaceChildren(hero, infoStack, screenshotTitle, screenshots, linksTitle, buttons, back);
+    root.replaceChildren(
+      hero,
+      infoStack,
+      screenshotTitle,
+      screenshots,
+      linksTitle,
+      buttons,
+      back
+    );
   }
 </script>
+
 </body>
 </html>
