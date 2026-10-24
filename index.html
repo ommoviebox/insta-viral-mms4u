@@ -1,5 +1,5 @@
-<!doctype html>
 
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -9,22 +9,29 @@
   <meta name="description" content="Entertainment categories and authorized viewing links.">
   <link rel="stylesheet" href="style.css">
 </head>
-<body><header>
-<a class="brand" href="index.html" aria-label="Insta Viral MMS4u Home">
-  <video class="video-logo" autoplay muted loop playsinline preload="auto">
-    <source src="logo.mp4" type="video/mp4">
-  </video>
-</a>
-</header><!-- Search bar below website name --><form id="searchForm">
-<input id="searchInput" type="search" placeholder="Search..." aria-label="Search titles">
-  >
+<body>
+
+<header>
+  <a class="brand" href="index.html" aria-label="Insta Viral MMS4u Home">
+    <video class="video-logo" autoplay muted loop playsinline preload="auto">
+      <source src="./logo.mp4" type="video/mp4">
+    </video>
+  </a>
+</header>
+
+<form id="searchForm">
+  <input id="searchInput" type="search" placeholder="Search..." aria-label="Search titles">
   <button type="submit">SEARCH</button>
-</form><!-- Menu and Telegram buttons --><div class="actions">
+</form>
+
+<div class="actions">
   <button id="menuToggle" type="button">☰ MENU</button>
   <a class="telegram" href="https://t.me/" target="_blank" rel="noopener">
     ✈ JOIN TELEGRAM
   </a>
-</div><!-- Category buttons --><nav id="siteNav">
+</div>
+
+<nav id="siteNav">
   <div class="category-buttons">
     <a class="category-btn" href="#all">All</a>
     <a class="category-btn" href="#instagram-viral-video">Instagram Viral Video</a>
@@ -40,9 +47,17 @@
     <a class="category-btn" href="#all-viral-video">All Viral Video</a>
   </div>
 </nav>
-<h2 class="heading latest-release">🔥 Latest Release</h2><main id="movieGrid" class="grid"></main><p id="emptyState" hidden>
-  No titles found.
-</p><footer>
+
+<h2 class="heading latest-release">🔥 Latest Release</h2>
+
+<main id="movieGrid" class="grid"></main>
+
+<p id="emptyState" hidden>No titles found.</p>
+
+<footer>
   Insta Viral MMS4u · Entertainment information and authorized links
-</footer><script type="module" src="app.js"></script></body>
+</footer>
+
+<script type="module" src="app.js"></script>
+</body>
 </html>
