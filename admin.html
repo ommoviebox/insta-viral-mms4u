@@ -60,6 +60,7 @@ button.danger{background:#b3261e}
 <label>Category *</label>
 <select id="category" required>
 <option value="">Select Category</option>
+<option>Latest Release</option>
 <option>Instagram Viral Video</option>
 <option>Hindi Video</option>
 <option>English Video</option>
@@ -91,9 +92,6 @@ button.danger{background:#b3261e}
 
 <label>Screenshot URLs (one URL per line)</label>
 <textarea id="screenshots" placeholder="https://..."></textarea>
-
-<label>Description</label>
-<textarea id="description"></textarea>
 
 <h3>Watch / Download / Custom Buttons</h3>
 <p class="muted">हर बटन का नाम और लिंक लिखें। ज़रूरत के अनुसार कई बटन जोड़ें।</p>
@@ -186,6 +184,9 @@ $("category").onchange=()=>{
 $("customCategoryWrap").classList.toggle(
 "hidden",$("category").value!=="__custom"
 );
+if($("category").value!=="__custom"){
+$("customCategory").value="";
+}
 };
 
 $("loginForm").onsubmit=async e=>{
@@ -234,6 +235,7 @@ $("formHeading").textContent="Add Video";
 $("saveBtn").textContent="Save Video";
 $("cancelEdit").classList.add("hidden");
 $("customCategoryWrap").classList.add("hidden");
+$("customCategory").value="";
 setButtons([]);
 }
 $("cancelEdit").onclick=clearForm;
@@ -253,6 +255,10 @@ if(!category){
 msg("Select or enter a category");
 return;
 }
+if(category==="__custom"){
+msg("Enter a valid category name");
+return;
+}
 
 const data={
 title:$("title").value.trim(),
@@ -262,7 +268,6 @@ genre:$("genre").value.trim(),
 poster:$("poster").value.trim(),
 screenshots:$("screenshots").value
 .split(/\r?\n/).map(x=>x.trim()).filter(Boolean),
-description:$("description").value.trim(),
 buttons:readButtons(),
 published:$("published").value==="true",
 updatedAt:serverTimestamp()
@@ -345,13 +350,15 @@ list.append(box);
 
 function fill(v){
 $("docId").value=v.id;
-for(const f of ["title","type","genre","poster","description"]){
+for(const f of ["title","type","genre","poster"]){
 $(f).value=v[f]||"";
 }
+
 const opts=[...$("category").options].map(o=>o.value);
 if(opts.includes(v.category)&&v.category!=="__custom"){
 $("category").value=v.category;
 $("customCategoryWrap").classList.add("hidden");
+$("customCategory").value="";
 }else{
 $("category").value="__custom";
 $("customCategoryWrap").classList.remove("hidden");
