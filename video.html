@@ -29,7 +29,6 @@
       overflow-x: hidden;
     }
 
-    /* HEADER */
     header {
       width: 100%;
       text-align: center;
@@ -49,7 +48,6 @@
       object-fit: contain;
     }
 
-    /* HOME AND TELEGRAM BUTTONS */
     .actions {
       display: flex;
       align-items: center;
@@ -60,17 +58,22 @@
       padding: 10px 16px;
     }
 
+    /* NEON PINK HOME AND BACK TO HOME BUTTONS */
     .back-button {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      background: #c6ff00;
-      color: #000;
+      background: #ff1493 !important;
+      color: #fff !important;
       text-decoration: none;
       padding: 11px 18px;
+      border: 1px solid #ff69b4;
       border-radius: 50px;
       font-size: 14px;
       font-weight: 900;
+      box-shadow:
+        0 0 8px #ff1493,
+        0 0 16px rgba(255, 20, 147, 0.55);
     }
 
     .telegram {
@@ -84,7 +87,6 @@
       text-decoration: none;
     }
 
-    /* MAIN CONTENT */
     .detail-page {
       width: 100%;
       max-width: 760px;
@@ -92,7 +94,6 @@
       padding: 12px 18px 24px;
     }
 
-    /* POSTER AND TITLE */
     .detail-hero {
       display: grid;
       grid-template-columns: minmax(100px, 24%) minmax(0, 1fr);
@@ -132,7 +133,6 @@
       overflow-wrap: anywhere;
     }
 
-    /* VIDEO INFORMATION */
     .info-stack {
       display: grid;
       gap: 7px;
@@ -158,7 +158,6 @@
       font-weight: 800;
     }
 
-    /* SECTION HEADINGS */
     .section-title {
       width: 100%;
       margin: 20px 0 12px;
@@ -170,7 +169,6 @@
       font-weight: 900;
     }
 
-    /* SCREENSHOTS */
     .screenshots {
       display: grid;
       grid-template-columns: minmax(0, 1fr);
@@ -198,7 +196,6 @@
       padding: 0 10px;
     }
 
-    /* DOWNLOAD AND WATCH BUTTONS */
     .detail-buttons {
       display: grid;
       grid-template-columns: minmax(0, 1fr);
@@ -232,7 +229,6 @@
       background: #ff9800;
     }
 
-    /* FOOTER */
     .notice {
       color: #aaa;
       line-height: 1.6;
@@ -247,7 +243,6 @@
       font-size: 12px;
     }
 
-    /* DESKTOP AND LAPTOP */
     @media (min-width: 768px) {
       .video-logo {
         width: 380px;
@@ -280,7 +275,6 @@
         margin-top: 22px;
       }
 
-      /* One large screenshot in each row */
       .screenshots {
         grid-template-columns: minmax(0, 1fr);
         gap: 8px;
@@ -304,7 +298,6 @@
       }
     }
 
-    /* SMALL SCREENS */
     @media (max-width: 480px) {
       .video-logo {
         width: min(90%, 350px);
