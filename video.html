@@ -27,14 +27,14 @@
 
     .detail-hero {
       display: grid;
-      grid-template-columns: minmax(110px, 32%) minmax(0, 1fr);
+      grid-template-columns: minmax(100px, 30%) minmax(0, 1fr);
       align-items: center;
-      gap: 18px;
-      padding: 24px;
-      margin: 12px 0 18px;
+      gap: 14px;
+      padding: 16px;
+      margin: 10px 0 16px;
       background: #142037;
       border: 1px solid #263653;
-      border-radius: 30px;
+      border-radius: 22px;
     }
 
     .detail-poster {
@@ -43,72 +43,72 @@
       aspect-ratio: 2 / 3;
       object-fit: cover;
       background: #151515;
-      border-radius: 20px;
+      border-radius: 12px;
     }
 
     .poster-placeholder {
       display: grid;
       place-items: center;
       color: #777;
-      font-size: 28px;
+      font-size: 24px;
       font-weight: 900;
     }
 
-    /* Bigger, bolder title */
+    /* SMALL TITLE BESIDE POSTER */
     .detail-title {
       margin: 0;
       color: #f5f6fb;
       font-family: Arial, Helvetica, sans-serif;
-      font-size: clamp(26px, 4.5vw, 38px);
-      font-weight: 900;
+      font-size: 18px;
+      font-weight: 700;
       line-height: 1.4;
-      letter-spacing: -0.5px;
+      letter-spacing: 0;
       overflow-wrap: anywhere;
     }
 
     .info-stack {
       display: grid;
-      gap: 10px;
+      gap: 8px;
     }
 
+    /* SMALL NAME AND GENRE TEXT */
     .info-card {
-      padding: 16px 20px;
+      padding: 12px 14px;
       background: #142037;
       border: 1px solid #263653;
-      border-radius: 22px;
+      border-radius: 16px;
       color: #f5f6fb;
-      font-size: clamp(16px, 2.5vw, 22px);
-      font-weight: 600;
+      font-size: 16px;
+      font-weight: 500;
       line-height: 1.5;
       overflow-wrap: anywhere;
     }
 
     .info-card strong {
       color: #8998b2;
-      font-size: .78em;
-      font-weight: 900;
-      letter-spacing: .3px;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0;
     }
 
-    /* Section headings */
     .section-title {
-      margin: 24px 0 14px;
-      padding: 16px 8px;
+      margin: 22px 0 12px;
+      padding: 15px 8px;
       text-align: center;
       background: #0d1523;
       color: #f5f6fb;
-      font-size: clamp(23px, 4vw, 34px);
+      font-size: clamp(21px, 4vw, 30px);
       font-weight: 900;
     }
 
-    /* Screenshots expand to full viewport width */
+    /* SCREENSHOTS USE FULL AVAILABLE WIDTH */
     .screenshots {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 2px;
       width: calc(100% + 36px);
       max-width: none;
-      margin: 0 -18px 24px;
+      margin: 0 -18px 22px;
       padding: 0;
     }
 
@@ -138,11 +138,11 @@
       text-align: center;
       text-decoration: none;
       font-family: Arial, Helvetica, sans-serif;
-      font-size: clamp(17px, 3vw, 23px);
+      font-size: 18px;
       font-weight: 900;
       line-height: 1.35;
-      padding: 16px 12px;
-      border-radius: 10px;
+      padding: 14px 12px;
+      border-radius: 9px;
       color: #000;
       overflow-wrap: anywhere;
     }
@@ -157,7 +157,7 @@
       background: #c6ff00;
       color: #000;
       text-decoration: none;
-      padding: 13px 20px;
+      padding: 12px 18px;
       border-radius: 50px;
       font-weight: 900;
     }
@@ -173,43 +173,48 @@
       }
 
       .detail-hero {
-        grid-template-columns: minmax(100px, 34%) minmax(0, 1fr);
-        gap: 14px;
-        padding: 16px;
-        border-radius: 26px;
-        margin-top: 10px;
-        margin-bottom: 16px;
+        grid-template-columns: minmax(95px, 30%) minmax(0, 1fr);
+        gap: 12px;
+        padding: 12px;
+        border-radius: 18px;
+        margin-top: 8px;
+        margin-bottom: 14px;
       }
 
       .detail-poster {
-        border-radius: 16px;
+        border-radius: 10px;
       }
 
+      /* MOBILE TITLE SIZE */
       .detail-title {
-        font-size: 27px;
+        font-size: 16px;
         line-height: 1.4;
-        font-weight: 900;
+        font-weight: 700;
       }
 
       .info-stack {
-        gap: 8px;
+        gap: 7px;
       }
 
       .info-card {
-        padding: 14px 13px;
-        border-radius: 18px;
-        font-size: 17px;
+        padding: 11px 12px;
+        border-radius: 14px;
+        font-size: 15px;
+      }
+
+      .info-card strong {
+        font-size: 12px;
       }
 
       .section-title {
-        margin: 20px -10px 12px;
-        padding: 16px 8px;
-        font-size: 25px;
+        margin: 18px -10px 10px;
+        padding: 14px 8px;
+        font-size: 22px;
       }
 
       .screenshots {
         width: calc(100% + 20px);
-        margin: 0 -10px 20px;
+        margin: 0 -10px 18px;
         gap: 2px;
       }
 
@@ -219,13 +224,13 @@
       }
 
       .detail-buttons {
-        gap: 9px;
+        gap: 8px;
       }
 
       .detail-button {
-        padding: 14px 8px;
-        font-size: 18px;
-        border-radius: 9px;
+        padding: 12px 8px;
+        font-size: 16px;
+        border-radius: 8px;
       }
     }
   </style>
@@ -258,6 +263,7 @@
 <script type="module">
   import { videos as localVideos } from "./videos.js";
   import { db } from "./firebase-config.js";
+
   import {
     doc,
     getDoc
@@ -331,19 +337,29 @@
     function addInfo(label, value) {
       const card = document.createElement("div");
       card.className = "info-card";
+
       card.append(
         addText("strong", "", label + ": "),
         document.createTextNode(value || "—")
       );
+
       infoStack.appendChild(card);
     }
 
     addInfo("NAME", video.title);
     addInfo("GENRE", video.genre || video.category);
 
-    if (video.year) addInfo("RELEASE YEAR", String(video.year));
-    if (video.language) addInfo("LANGUAGE", video.language);
-    if (video.description) addInfo("DESCRIPTION :-", video.description);
+    if (video.year) {
+      addInfo("RELEASE YEAR", String(video.year));
+    }
+
+    if (video.language) {
+      addInfo("LANGUAGE", video.language);
+    }
+
+    if (video.description) {
+      addInfo("DESCRIPTION", video.description);
+    }
 
     const screenshotTitle = addText(
       "h2",
@@ -391,9 +407,11 @@
 
       const label = String(item.label || "OPEN LINK").trim();
       const link = addText("a", "detail-button download-button", label);
+
       link.href = url;
       link.target = "_blank";
       link.rel = "noopener noreferrer";
+
       buttons.appendChild(link);
     });
 
@@ -407,9 +425,11 @@
           "detail-button download-button",
           "⬇ DOWNLOAD"
         );
+
         link.href = download;
         link.target = "_blank";
         link.rel = "noopener noreferrer";
+
         buttons.appendChild(link);
       }
 
@@ -419,9 +439,11 @@
           "detail-button watch-button",
           "▶ ONLINE WATCH"
         );
+
         link.href = watch;
         link.target = "_blank";
         link.rel = "noopener noreferrer";
+
         buttons.appendChild(link);
       }
     }
@@ -466,6 +488,7 @@
         console.error("Could not load video:", error);
         showError("Could not load this video. Please try again later.");
       }
+
       return;
     }
 
