@@ -5,37 +5,104 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#000">
+
   <title>Video Details - Insta Viral MMS4u</title>
   <link rel="stylesheet" href="style.css">
 
   <style>
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      background: #000;
+      min-height: 100%;
+    }
 
     body {
       margin: 0;
-      background: #000;
+      width: 100%;
+      min-height: 100vh;
+      background: #000 !important;
       color: #fff;
       font-family: Arial, Helvetica, sans-serif;
       overflow-x: hidden;
     }
 
-    .detail-page {
+    /* HEADER */
+    header {
       width: 100%;
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 12px 18px;
+      text-align: center;
     }
 
+    header .brand {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      max-width: 100%;
+    }
+
+    .video-logo {
+      display: block;
+      width: min(90%, 380px);
+      max-height: 110px;
+      object-fit: contain;
+    }
+
+    /* HOME AND TELEGRAM BUTTONS */
+    .actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      width: 100%;
+      padding: 10px 16px;
+    }
+
+    .back-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #c6ff00;
+      color: #000;
+      text-decoration: none;
+      padding: 11px 18px;
+      border-radius: 50px;
+      font-size: 14px;
+      font-weight: 900;
+    }
+
+    .telegram {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 11px 18px;
+      border-radius: 50px;
+      font-size: 14px;
+      font-weight: 900;
+      text-decoration: none;
+    }
+
+    /* MAIN CONTENT */
+    .detail-page {
+      width: 100%;
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 12px 18px 24px;
+    }
+
+    /* POSTER AND TITLE */
     .detail-hero {
       display: grid;
-      grid-template-columns: minmax(100px, 30%) minmax(0, 1fr);
+      grid-template-columns: minmax(100px, 24%) minmax(0, 1fr);
       align-items: center;
-      gap: 14px;
+      gap: 16px;
       padding: 16px;
       margin: 10px 0 16px;
       background: #142037;
       border: 1px solid #263653;
-      border-radius: 22px;
+      border-radius: 18px;
     }
 
     .detail-poster {
@@ -44,7 +111,7 @@
       aspect-ratio: 2 / 3;
       object-fit: cover;
       background: #151515;
-      border-radius: 12px;
+      border-radius: 10px;
     }
 
     .poster-placeholder {
@@ -59,22 +126,25 @@
       margin: 0;
       color: #f5f6fb;
       font-family: Arial, Helvetica, sans-serif;
-      font-size: 16px;
+      font-size: clamp(17px, 2.4vw, 24px);
       font-weight: 700;
       line-height: 1.4;
       overflow-wrap: anywhere;
     }
 
+    /* VIDEO INFORMATION */
     .info-stack {
       display: grid;
-      gap: 8px;
+      gap: 7px;
+      width: 100%;
     }
 
     .info-card {
-      padding: 12px 14px;
+      width: 100%;
+      padding: 11px 13px;
       background: #142037;
       border: 1px solid #263653;
-      border-radius: 16px;
+      border-radius: 11px;
       color: #f5f6fb;
       font-size: 13px;
       font-weight: 500;
@@ -84,28 +154,30 @@
 
     .info-card strong {
       color: #8998b2;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 800;
     }
 
+    /* SECTION HEADINGS */
     .section-title {
-      margin: 22px 0 12px;
-      padding: 15px 8px;
+      width: 100%;
+      margin: 20px 0 12px;
+      padding: 14px 8px;
       text-align: center;
       background: #0d1523;
       color: #f5f6fb;
-      font-size: clamp(21px, 4vw, 30px);
+      font-size: 22px;
       font-weight: 900;
     }
 
-    /* ONE LARGE SCREENSHOT PER ROW */
+    /* SCREENSHOTS */
     .screenshots {
       display: grid;
       grid-template-columns: minmax(0, 1fr);
-      gap: 6px;
-      width: 100vw;
-      max-width: none;
-      margin: 0 calc(50% - 50vw) 22px;
+      gap: 7px;
+      width: 100%;
+      max-width: 100%;
+      margin: 0 auto 22px;
       padding: 0;
       align-items: start;
     }
@@ -117,133 +189,217 @@
       height: auto;
       min-width: 0;
       border: 1px solid #fff;
-      border-radius: 0;
+      border-radius: 4px;
       background: #151515;
       object-fit: contain;
     }
 
     .screenshots .notice {
-      padding: 0 12px;
+      padding: 0 10px;
     }
 
+    /* DOWNLOAD AND WATCH BUTTONS */
     .detail-buttons {
       display: grid;
-      gap: 10px;
-      margin: 14px 0 24px;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 8px;
+      width: 100%;
+      max-width: 500px;
+      margin: 14px auto 24px;
     }
 
     .detail-button {
       display: block;
       width: 100%;
+      min-height: 44px;
+      padding: 12px 10px;
+      border-radius: 7px;
+      color: #fff;
       text-align: center;
       text-decoration: none;
       font-family: Arial, Helvetica, sans-serif;
-      font-size: 18px;
-      font-weight: 900;
+      font-size: 15px;
+      font-weight: 800;
       line-height: 1.35;
-      padding: 14px 12px;
-      border-radius: 9px;
-      color: #000;
       overflow-wrap: anywhere;
     }
 
-    .download-button { background: #19b86b; }
-    .watch-button { background: #ff9800; }
-
-    .back-button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      background: #c6ff00;
-      color: #000;
-      text-decoration: none;
-      padding: 12px 18px;
-      border-radius: 50px;
-      font-weight: 900;
+    .download-button {
+      background: #19b86b;
     }
 
+    .watch-button {
+      background: #ff9800;
+    }
+
+    /* FOOTER */
     .notice {
       color: #aaa;
       line-height: 1.6;
     }
 
-    @media (max-width: 480px) {
+    footer {
+      width: 100%;
+      padding: 16px 12px;
+      background: #000;
+      color: #888;
+      text-align: center;
+      font-size: 12px;
+    }
+
+    /* DESKTOP AND LAPTOP */
+    @media (min-width: 768px) {
+      .video-logo {
+        width: 380px;
+        max-height: 110px;
+      }
+
       .detail-page {
+        max-width: 760px;
+        padding: 12px 18px 28px;
+      }
+
+      .detail-hero {
+        grid-template-columns: 180px minmax(0, 1fr);
+        gap: 20px;
+        padding: 18px;
+        border-radius: 18px;
+      }
+
+      .detail-title {
+        font-size: 24px;
+      }
+
+      .info-card {
+        padding: 11px 13px;
+        font-size: 13px;
+      }
+
+      .section-title {
+        font-size: 24px;
+        margin-top: 22px;
+      }
+
+      /* One large screenshot in each row */
+      .screenshots {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 8px;
+        width: 100%;
+        max-width: 100%;
+      }
+
+      .screenshots img {
+        width: 100%;
+        height: auto;
+      }
+
+      .detail-buttons {
+        max-width: 500px;
+        gap: 8px;
+      }
+
+      .detail-button {
+        min-height: 46px;
+        font-size: 15px;
+      }
+    }
+
+    /* SMALL SCREENS */
+    @media (max-width: 480px) {
+      .video-logo {
+        width: min(90%, 350px);
+        max-height: 95px;
+      }
+
+      .actions {
+        gap: 8px;
         padding: 8px 10px;
+      }
+
+      .back-button,
+      .telegram {
+        padding: 10px 14px;
+        font-size: 12px;
+      }
+
+      .detail-page {
+        padding: 8px 10px 20px;
       }
 
       .detail-hero {
         grid-template-columns: minmax(95px, 30%) minmax(0, 1fr);
-        gap: 12px;
-        padding: 12px;
-        border-radius: 18px;
-        margin-top: 8px;
-        margin-bottom: 14px;
+        gap: 10px;
+        padding: 10px;
+        margin: 8px 0 12px;
+        border-radius: 15px;
       }
 
       .detail-poster {
-        border-radius: 10px;
+        border-radius: 8px;
       }
 
       .detail-title {
         font-size: 16px;
         line-height: 1.4;
-        font-weight: 700;
       }
 
       .info-stack {
-        gap: 8px;
-      }
-
-      .info-card {
-        padding: 12px 14px;
-        border-radius: 16px;
-        font-size: 13px;
-        line-height: 1.6;
-      }
-
-      .info-card strong {
-        font-size: 12px;
-      }
-
-      .section-title {
-        margin: 18px -10px 10px;
-        padding: 14px 8px;
-        font-size: 22px;
-      }
-
-      /* MOBILE: ONE FULL-WIDTH IMAGE PER ROW */
-      .screenshots {
-        grid-template-columns: minmax(0, 1fr);
-        width: 100vw;
-        margin: 0 calc(50% - 50vw) 18px;
         gap: 6px;
       }
 
-      .screenshots img {
-        display: block;
+      .info-card {
+        padding: 9px 10px;
+        border-radius: 10px;
+        font-size: 12px;
+        line-height: 1.5;
+      }
+
+      .info-card strong {
+        font-size: 10px;
+      }
+
+      .section-title {
+        margin: 18px 0 10px;
+        padding: 13px 6px;
+        font-size: 20px;
+      }
+
+      .screenshots {
+        grid-template-columns: minmax(0, 1fr);
         width: 100%;
-        max-width: 100%;
+        gap: 6px;
+        margin: 0 auto 18px;
+      }
+
+      .screenshots img {
+        width: 100%;
         height: auto;
-        border: 1px solid #fff;
-        border-radius: 0;
-        object-fit: contain;
+        border-radius: 3px;
       }
 
       .detail-buttons {
-        gap: 8px;
+        width: 100%;
+        max-width: 100%;
+        gap: 7px;
+        margin: 12px auto 20px;
       }
 
       .detail-button {
-        padding: 12px 8px;
-        font-size: 16px;
-        border-radius: 8px;
+        min-height: 42px;
+        padding: 11px 8px;
+        font-size: 14px;
+        border-radius: 7px;
+      }
+
+      footer {
+        font-size: 11px;
       }
     }
   </style>
 </head>
 
 <body>
+
 <header>
   <a class="brand" href="index.html" aria-label="Home">
     <video class="video-logo" autoplay muted loop playsinline preload="auto">
@@ -254,7 +410,11 @@
 
 <div class="actions">
   <a class="back-button" href="index.html">← HOME</a>
-  <a class="telegram" href="https://t.me/" target="_blank" rel="noopener noreferrer">
+
+  <a class="telegram"
+     href="https://t.me/"
+     target="_blank"
+     rel="noopener noreferrer">
     ✈ JOIN TELEGRAM
   </a>
 </div>
@@ -291,28 +451,46 @@
   function validLink(value) {
     try {
       const url = new URL(value, location.href);
-      return ["http:", "https:"].includes(url.protocol) ? url.href : "";
+
+      return ["http:", "https:"].includes(url.protocol)
+        ? url.href
+        : "";
     } catch {
       return "";
     }
   }
 
   function showError(message) {
-    const heading = addText("h2", "section-title", "Video not found");
+    const heading = addText(
+      "h2",
+      "section-title",
+      "Video not found"
+    );
+
     const text = addText("p", "notice", message);
-    const back = addText("a", "back-button", "← Back to Home");
+
+    const back = addText(
+      "a",
+      "back-button",
+      "← Back to Home"
+    );
+
     back.href = "index.html";
+
     root.replaceChildren(heading, text, back);
   }
 
   function renderVideo(video) {
     if (!video) {
-      showError("Please return to the home page and select a video.");
+      showError(
+        "Please return to the home page and select a video."
+      );
       return;
     }
 
     document.title =
-      (video.title || "Video Details") + " - Insta Viral MMS4u";
+      (video.title || "Video Details") +
+      " - Insta Viral MMS4u";
 
     const hero = document.createElement("section");
     hero.className = "detail-hero";
@@ -325,7 +503,11 @@
       poster.src = video.poster;
       poster.alt = video.title || "Video poster";
     } else {
-      poster = addText("div", "detail-poster poster-placeholder", "IV");
+      poster = addText(
+        "div",
+        "detail-poster poster-placeholder",
+        "IV"
+      );
     }
 
     const title = addText(
@@ -354,9 +536,17 @@
     addInfo("NAME", video.title);
     addInfo("GENRE", video.genre || video.category);
 
-    if (video.year) addInfo("RELEASE YEAR", String(video.year));
-    if (video.language) addInfo("LANGUAGE", video.language);
-    if (video.description) addInfo("DESCRIPTION", video.description);
+    if (video.year) {
+      addInfo("RELEASE YEAR", String(video.year));
+    }
+
+    if (video.language) {
+      addInfo("LANGUAGE", video.language);
+    }
+
+    if (video.description) {
+      addInfo("DESCRIPTION", video.description);
+    }
 
     const screenshotTitle = addText(
       "h2",
@@ -373,9 +563,11 @@
 
     screenshotList.filter(Boolean).forEach(src => {
       const image = document.createElement("img");
+
       image.src = src;
       image.alt = "Video screenshot";
       image.loading = "lazy";
+
       screenshots.appendChild(image);
     });
 
@@ -400,10 +592,18 @@
 
     customButtons.forEach(item => {
       const url = validLink(item && item.url);
+
       if (!url) return;
 
-      const label = String(item.label || "OPEN LINK").trim();
-      const link = addText("a", "detail-button download-button", label);
+      const label = String(
+        item.label || "OPEN LINK"
+      ).trim();
+
+      const link = addText(
+        "a",
+        "detail-button download-button",
+        label
+      );
 
       link.href = url;
       link.target = "_blank";
@@ -451,7 +651,12 @@
       );
     }
 
-    const back = addText("a", "back-button", "← Back to Home");
+    const back = addText(
+      "a",
+      "back-button",
+      "← Back to Home"
+    );
+
     back.href = "index.html";
 
     root.replaceChildren(
@@ -473,9 +678,14 @@
 
     if (source === "firebase") {
       try {
-        const snapshot = await getDoc(doc(db, "videos", rawId));
+        const snapshot = await getDoc(
+          doc(db, "videos", rawId)
+        );
 
-        if (!snapshot.exists() || snapshot.data().published !== true) {
+        if (
+          !snapshot.exists() ||
+          snapshot.data().published !== true
+        ) {
           showError("This video is not available.");
           return;
         }
@@ -483,7 +693,10 @@
         renderVideo(snapshot.data());
       } catch (error) {
         console.error("Could not load video:", error);
-        showError("Could not load this video. Please try again later.");
+
+        showError(
+          "Could not load this video. Please try again later."
+        );
       }
 
       return;
@@ -499,5 +712,6 @@
 
   loadVideo();
 </script>
+
 </body>
 </html>
