@@ -54,14 +54,14 @@
       font-weight: 900;
     }
 
-    /* SMALL TITLE BESIDE POSTER */
+    /* Smaller title */
     .detail-title {
       margin: 0;
       color: #f5f6fb;
       font-family: Arial, Helvetica, sans-serif;
-      font-size: 18px;
+      font-size: 12px;
       font-weight: 700;
-      line-height: 1.4;
+      line-height: 1.35;
       letter-spacing: 0;
       overflow-wrap: anywhere;
     }
@@ -71,22 +71,22 @@
       gap: 8px;
     }
 
-    /* SMALL NAME AND GENRE TEXT */
+    /* Smaller NAME and GENRE */
     .info-card {
-      padding: 12px 14px;
+      padding: 9px 10px;
       background: #142037;
       border: 1px solid #263653;
-      border-radius: 16px;
+      border-radius: 14px;
       color: #f5f6fb;
-      font-size: 16px;
+      font-size: 10px;
       font-weight: 500;
-      line-height: 1.5;
+      line-height: 1.4;
       overflow-wrap: anywhere;
     }
 
     .info-card strong {
       color: #8998b2;
-      font-size: 12px;
+      font-size: 9px;
       font-weight: 800;
       letter-spacing: 0;
     }
@@ -101,7 +101,7 @@
       font-weight: 900;
     }
 
-    /* SCREENSHOTS USE FULL AVAILABLE WIDTH */
+    /* Screenshots full width */
     .screenshots {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -122,9 +122,7 @@
       background: #151515;
     }
 
-    .screenshots .notice {
-      padding: 0 18px;
-    }
+    .screenshots .notice { padding: 0 18px; }
 
     .detail-buttons {
       display: grid;
@@ -162,15 +160,10 @@
       font-weight: 900;
     }
 
-    .notice {
-      color: #aaa;
-      line-height: 1.6;
-    }
+    .notice { color: #aaa; line-height: 1.6; }
 
     @media (max-width: 480px) {
-      .detail-page {
-        padding: 8px 10px;
-      }
+      .detail-page { padding: 8px 10px; }
 
       .detail-hero {
         grid-template-columns: minmax(95px, 30%) minmax(0, 1fr);
@@ -181,30 +174,23 @@
         margin-bottom: 14px;
       }
 
-      .detail-poster {
-        border-radius: 10px;
-      }
+      .detail-poster { border-radius: 10px; }
 
-      /* MOBILE TITLE SIZE */
       .detail-title {
-        font-size: 16px;
-        line-height: 1.4;
+        font-size: 12px;
+        line-height: 1.35;
         font-weight: 700;
       }
 
-      .info-stack {
-        gap: 7px;
-      }
+      .info-stack { gap: 7px; }
 
       .info-card {
-        padding: 11px 12px;
+        padding: 9px 10px;
         border-radius: 14px;
-        font-size: 15px;
+        font-size: 10px;
       }
 
-      .info-card strong {
-        font-size: 12px;
-      }
+      .info-card strong { font-size: 9px; }
 
       .section-title {
         margin: 18px -10px 10px;
@@ -223,9 +209,7 @@
         border-width: 1px;
       }
 
-      .detail-buttons {
-        gap: 8px;
-      }
+      .detail-buttons { gap: 8px; }
 
       .detail-button {
         padding: 12px 8px;
@@ -284,9 +268,7 @@
   function validLink(value) {
     try {
       const url = new URL(value, location.href);
-      return ["http:", "https:"].includes(url.protocol)
-        ? url.href
-        : "";
+      return ["http:", "https:"].includes(url.protocol) ? url.href : "";
     } catch {
       return "";
     }
@@ -349,17 +331,9 @@
     addInfo("NAME", video.title);
     addInfo("GENRE", video.genre || video.category);
 
-    if (video.year) {
-      addInfo("RELEASE YEAR", String(video.year));
-    }
-
-    if (video.language) {
-      addInfo("LANGUAGE", video.language);
-    }
-
-    if (video.description) {
-      addInfo("DESCRIPTION", video.description);
-    }
+    if (video.year) addInfo("RELEASE YEAR", String(video.year));
+    if (video.language) addInfo("LANGUAGE", video.language);
+    if (video.description) addInfo("DESCRIPTION", video.description);
 
     const screenshotTitle = addText(
       "h2",
