@@ -53,6 +53,13 @@ if (!grid) {
     return String(value || "").toLowerCase().trim();
   }
 
+  // Hide the two example videos from both Firebase and local data.
+  function isExampleVideo(video) {
+    const title = norm(video.title);
+    return title === "example video one" ||
+           title === "example video two";
+  }
+
   async function loadFirebaseVideos() {
     try {
       const videoQuery = query(
@@ -126,10 +133,7 @@ if (!grid) {
         latestOnly = false;
 
         wrap.querySelectorAll(".category-btn").forEach(item => {
-          item.classList.toggle(
-            "active",
-            item.textContent === name
-          );
+          item.classList.toggle("active", item.textContent === name);
         });
 
         const latestButton = document.querySelector(
@@ -158,11 +162,7 @@ if (!grid) {
 
         if (window.innerWidth <= 649) {
           const isOpen = nav.classList.toggle("menu-open");
-
-          menuToggle.setAttribute(
-            "aria-expanded",
-            String(isOpen)
-          );
+          menuToggle.setAttribute("aria-expanded", String(isOpen));
         }
       };
     }
@@ -219,6 +219,9 @@ if (!grid) {
     const queryText = norm(search ? search.value : "");
 
     return titles.filter(video => {
+      // Remove the examples before search/category filtering.
+      if (isExampleVideo(video)) return false;
+
       const searchable = norm([
         video.title,
         video.year,
@@ -245,9 +248,7 @@ if (!grid) {
   }
 
   function getPageSize() {
-    return currentPage === 0
-      ? FIRST_PAGE_SIZE
-      : NEXT_PAGE_SIZE;
+    return currentPage === 0 ? FIRST_PAGE_SIZE : NEXT_PAGE_SIZE;
   }
 
   function getPageStart() {
@@ -259,9 +260,7 @@ if (!grid) {
   function getTotalPages(count) {
     return count <= FIRST_PAGE_SIZE
       ? 1
-      : 1 + Math.ceil(
-          (count - FIRST_PAGE_SIZE) / NEXT_PAGE_SIZE
-        );
+      : 1 + Math.ceil((count - FIRST_PAGE_SIZE) / NEXT_PAGE_SIZE);
   }
 
   function pageButton(label, disabled, action) {
@@ -290,23 +289,15 @@ if (!grid) {
     pager.replaceChildren();
 
     const totalPages = getTotalPages(count);
-
     if (!count || totalPages <= 1) return;
 
-    const previous = pageButton(
-      "❮ PREVIOUS",
-      currentPage === 0,
-      () => {
-        if (currentPage > 0) {
-          currentPage--;
-          render();
-          grid.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
-          });
-        }
+    const previous = pageButton("❮ PREVIOUS", currentPage === 0, () => {
+      if (currentPage > 0) {
+        currentPage--;
+        render();
+        grid.scrollIntoView({ behavior: "smooth", block: "start" });
       }
-    );
+    });
 
     const info = document.createElement("span");
     info.textContent = `Page ${currentPage + 1} of ${totalPages}`;
@@ -319,10 +310,7 @@ if (!grid) {
         if (currentPage < totalPages - 1) {
           currentPage++;
           render();
-          grid.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
-          });
+          grid.scrollIntoView({ behavior: "smooth", block: "start" });
         }
       }
     );
@@ -349,9 +337,7 @@ if (!grid) {
 
     if (emptyState) {
       emptyState.hidden = filtered.length > 0;
-      emptyState.textContent = filtered.length
-        ? ""
-        : "No titles found.";
+      emptyState.textContent = filtered.length ? "" : "No titles found.";
     }
 
     shown.forEach(video => {
@@ -367,9 +353,7 @@ if (!grid) {
         const localIndex =
           video.localIndex ?? localVideos.indexOf(video);
 
-        card.href =
-          "video.html?id=" +
-          encodeURIComponent(localIndex);
+        card.href = "video.html?id=" + encodeURIComponent(localIndex);
       }
 
       const inner = document.createElement("div");
