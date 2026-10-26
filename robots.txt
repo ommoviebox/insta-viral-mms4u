@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://instaviralmms4u.sbs/sitemap.xml
